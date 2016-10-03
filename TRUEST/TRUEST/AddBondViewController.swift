@@ -48,7 +48,9 @@ extension AddBondViewController {
         ScrollView.addSubview(ContentView)
         // setup the UIs'here
         // ConcelPress: UIButton
-        guard let concelImage = UIImage(named: "icon_close_button") else {fatalError()}
+        guard let concelImage = UIImage(named: "icon_close_button") else { fatalError() }
+        let concelImageView = UIImageView(image: concelImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate))
+        concelImageView.tintColor = UIColor.whiteColor()
         ConcelPress.setImage(concelImage, forState: .Normal)
         ConcelPress.addTarget(self, action: #selector(AddBondViewController.AbortSelectedImage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
@@ -72,6 +74,8 @@ extension AddBondViewController{
 
 extension AddBondViewController {
     @objc private func AbortSelectedImage(sender: UIButton) {
+        AddPhotoDescription.hidden = false
+        PostcardImage.image = UIImage() // = UIImage(named: " ")
         self.dismissViewControllerAnimated(false, completion: nil)
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
