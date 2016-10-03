@@ -7,23 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0468AA1D9E36FB00AD3005 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */; };
+		6B0468AC1D9E3C0200AD3005 /* UIColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0468AB1D9E3C0200AD3005 /* UIColors.swift */; };
+		6B0468C21D9E528E00AD3005 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0468BF1D9E528E00AD3005 /* FBSDKCoreKit.framework */; };
+		6B0468C31D9E528E00AD3005 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0468C01D9E528E00AD3005 /* FBSDKLoginKit.framework */; };
+		6B0468C41D9E528E00AD3005 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0468C11D9E528E00AD3005 /* FBSDKShareKit.framework */; };
+		6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */; };
 		6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */; };
-		6BE1D1881D9904AD001B19E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1871D9904AD001B19E0 /* ViewController.swift */; };
+		6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */; };
 		6BE1D18B1D9904AD001B19E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D1891D9904AD001B19E0 /* Main.storyboard */; };
 		6BE1D18E1D9904AD001B19E0 /* TRUEST.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */; };
 		6BE1D1901D9904AD001B19E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */; };
 		6BE1D1931D9904AD001B19E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D1911D9904AD001B19E0 /* LaunchScreen.storyboard */; };
+		E93D9D8AF76F8BABD253199D /* Pods_TRUEST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5DAC296C625582959AC9C180 /* Pods-TRUEST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRUEST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST.debug.xcconfig"; sourceTree = "<group>"; };
+		6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6B0468AB1D9E3C0200AD3005 /* UIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
+		6B0468BF1D9E528E00AD3005 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		6B0468C01D9E528E00AD3005 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		6B0468C11D9E528E00AD3005 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBondViewController.swift; sourceTree = "<group>"; };
 		6BE1D1821D9904AD001B19E0 /* TRUEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRUEST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6BE1D1871D9904AD001B19E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6BE1D18A1D9904AD001B19E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6BE1D18D1D9904AD001B19E0 /* TRUEST.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TRUEST.xcdatamodel; sourceTree = "<group>"; };
 		6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BE1D1921D9904AD001B19E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6BE1D1941D9904AD001B19E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF29872BA91A898FE8E06FB7 /* Pods-TRUEST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRUEST.release.xcconfig"; path = "Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST.release.xcconfig"; sourceTree = "<group>"; };
+		FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRUEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +47,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0468C41D9E528E00AD3005 /* FBSDKShareKit.framework in Frameworks */,
+				E93D9D8AF76F8BABD253199D /* Pods_TRUEST.framework in Frameworks */,
+				6B0468C21D9E528E00AD3005 /* FBSDKCoreKit.framework in Frameworks */,
+				6B0468C31D9E528E00AD3005 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		61E20E94D95A6BF59819FE45 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B0468BF1D9E528E00AD3005 /* FBSDKCoreKit.framework */,
+				6B0468C01D9E528E00AD3005 /* FBSDKLoginKit.framework */,
+				6B0468C11D9E528E00AD3005 /* FBSDKShareKit.framework */,
+				FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6B81D2B21D9FE6DA00D42BA8 /* supporting */ = {
+			isa = PBXGroup;
+			children = (
+				6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */,
+				6BE1D1911D9904AD001B19E0 /* LaunchScreen.storyboard */,
+				6BE1D1941D9904AD001B19E0 /* Info.plist */,
+				6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */,
+			);
+			name = supporting;
+			sourceTree = "<group>";
+		};
 		6BE1D1791D9904AD001B19E0 = {
 			isa = PBXGroup;
 			children = (
+				6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */,
 				6BE1D1841D9904AD001B19E0 /* TRUEST */,
 				6BE1D1831D9904AD001B19E0 /* Products */,
+				FAB0215C8D43D932AA770B7A /* Pods */,
+				61E20E94D95A6BF59819FE45 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +101,23 @@
 		6BE1D1841D9904AD001B19E0 /* TRUEST */ = {
 			isa = PBXGroup;
 			children = (
+				6B81D2B21D9FE6DA00D42BA8 /* supporting */,
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
-				6BE1D1871D9904AD001B19E0 /* ViewController.swift */,
+				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
-				6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */,
-				6BE1D1911D9904AD001B19E0 /* LaunchScreen.storyboard */,
-				6BE1D1941D9904AD001B19E0 /* Info.plist */,
-				6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */,
+				6B0468AB1D9E3C0200AD3005 /* UIColors.swift */,
+				6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */,
 			);
 			path = TRUEST;
+			sourceTree = "<group>";
+		};
+		FAB0215C8D43D932AA770B7A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5DAC296C625582959AC9C180 /* Pods-TRUEST.debug.xcconfig */,
+				CF29872BA91A898FE8E06FB7 /* Pods-TRUEST.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +127,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BE1D1971D9904AD001B19E0 /* Build configuration list for PBXNativeTarget "TRUEST" */;
 			buildPhases = (
+				75E6EC0A88572C3C4C107155 /* [CP] Check Pods Manifest.lock */,
 				6BE1D17E1D9904AD001B19E0 /* Sources */,
 				6BE1D17F1D9904AD001B19E0 /* Frameworks */,
 				6BE1D1801D9904AD001B19E0 /* Resources */,
+				E8CDEE6436D4B272BF57ED45 /* [CP] Embed Pods Frameworks */,
+				2DD2AA44380FB37A35401809 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -126,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BE1D1931D9904AD001B19E0 /* LaunchScreen.storyboard in Resources */,
+				6B0468AA1D9E36FB00AD3005 /* GoogleService-Info.plist in Resources */,
 				6BE1D1901D9904AD001B19E0 /* Assets.xcassets in Resources */,
 				6BE1D18B1D9904AD001B19E0 /* Main.storyboard in Resources */,
 			);
@@ -133,13 +190,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2DD2AA44380FB37A35401809 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75E6EC0A88572C3C4C107155 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E8CDEE6436D4B272BF57ED45 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6BE1D17E1D9904AD001B19E0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6BE1D18E1D9904AD001B19E0 /* TRUEST.xcdatamodeld in Sources */,
-				6BE1D1881D9904AD001B19E0 /* ViewController.swift in Sources */,
+				6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */,
+				6B0468AC1D9E3C0200AD3005 /* UIColors.swift in Sources */,
+				6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */,
 				6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,8 +360,13 @@
 		};
 		6BE1D1981D9904AD001B19E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DAC296C625582959AC9C180 /* Pods-TRUEST.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TRUEST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.TRUEST;
@@ -264,8 +376,13 @@
 		};
 		6BE1D1991D9904AD001B19E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF29872BA91A898FE8E06FB7 /* Pods-TRUEST.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = TRUEST/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = appworksschool.prelecture.demo.TRUEST;
@@ -292,6 +409,7 @@
 				6BE1D1991D9904AD001B19E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
