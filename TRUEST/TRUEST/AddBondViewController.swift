@@ -69,14 +69,36 @@ extension AddBondViewController{
         AddPhotoDescription.hidden = true
         dismissViewControllerAnimated(true, completion: nil)
     }
-}
 
-
-extension AddBondViewController {
+    
     @objc private func AbortSelectedImage(sender: UIButton) {
         AddPhotoDescription.hidden = false
         PostcardImage.image = UIImage() // = UIImage(named: " ")
         self.dismissViewControllerAnimated(false, completion: nil)
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        switch textField {
+        case TitleTextField:
+            ScrollView.setContentOffset(CGPointMake(0, 150), animated: true)
+        case SignatureTextField:
+            ScrollView.setContentOffset(CGPointMake(0, 225), animated: true)
+        default: break
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
 }
