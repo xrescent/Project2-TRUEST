@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
 
 class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -25,8 +27,22 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     var pickedImage = UIImage()
+    var imageData = NSData()
     private let imagePicker = UIImagePickerController()
+    
+    var myPostcards: [Postcard] = []
+    var currentTextOfTitle: String! = "Edit title here"
+    var currentTextOfSignature: String! = "Sign up your name here"
+    var currentTextOfContext: String! = "What I want to say is..."
+    
+    var storageRef: FIRStorageReference!
+    private let databaseRef  = FIRDatabase.database().reference()
+    private var _refHandle: FIRDatabaseHandle!
 
+    @IBOutlet weak var Toolbar: UIToolbar!
+    @IBAction func NextPressed(sender: AnyObject) {
+        next()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +53,9 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         ContextTextField.delegate = self
         SignatureTextField.delegate = self
         imagePicker.delegate = self
+     
+
+
         
     }
 }
@@ -56,19 +75,67 @@ extension AddBondViewController {
     }
 }
 
+extension AddBondViewController{
+    private func next() {
+        
+        let imageData = UIImagePNGRepresentation(pickedImage)
+        myPostcards.append(Postcard(title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, image: imageData))
+        post()
+    }
+    
+    func configureStorage() {
+        storageRef = FIRStorage.storage().referenceForURL("gs://truest-625dd.appspot.com/")
+    }
+    
+    func post() {
+        
+        let sendAPostcard: [String: AnyObject] = ["title": currentTextOfTitle,
+                                                    "context": currentTextOfContext,
+                                                    "signature": currentTextOfSignature,
+                                                    "image": true]
+        
+        let postcardSentRef = databaseRef.child("postcards").childByAutoId()
+        let postcardSentUid = postcardSentRef.key
+        let imagePath = postcardSentUid // 該圖片存在firebase storage上的名稱
+        postcardSentRef.setValue(sendAPostcard)
+        storageRef = FIRStorage.storage().reference().child(imagePath)//在儲存到firebase storage前記得要去更改rule讓read,write = if true
+        storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+            
+            if let error = error {
+                print("Error upload image: \(error)")
+                return
+            }
+        }
+        
+            print("UID: \(postcardSentUid)")
+    }
+    
+//    func request() {          下載
+//        _refHandle = self.databaseRef.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
+//            guard let strongSelf = self else { return }
+////            strongSelf.myPostcards.append(snapshot)
+//            })
+//    }
+}
+
 
 extension AddBondViewController{
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            PostcardImage.contentMode = .ScaleToFill
-            PostcardImage.image = pickedImage
-            self.pickedImage = pickedImage as UIImage
-        }
+        // iOS 8.0用UIImagePickerControllerReferenceURL，else用OriginalImage
+        guard let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { fatalError() }
+        PostcardImage.contentMode = .ScaleToFill
+        PostcardImage.image = pickedImage
+        self.pickedImage = pickedImage as UIImage
+        imageData = UIImageJPEGRepresentation(pickedImage, 1.0)! //將所選取的image轉型成NSData，不壓縮
         
         AddPhotoDescription.hidden = true
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        picker.dismissViewControllerAnimated(true, completion:nil)
     }
 
     
@@ -111,6 +178,14 @@ extension AddBondViewController{
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        switch textField {
+        case TitleTextField:
+            currentTextOfTitle = textField.text
+        case SignatureTextField:
+            currentTextOfSignature = textField.text
+        default:
+            break
+        }
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
     
@@ -119,6 +194,7 @@ extension AddBondViewController{
     }
     
     func textViewDidEndEditing(textView: UITextView) {
+        currentTextOfContext = textView.text
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
 }

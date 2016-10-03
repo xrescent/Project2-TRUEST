@@ -213,7 +213,11 @@
                                 <items>
                                     <barButtonItem title="Intimates" id="5cx-S2-F0j"/>
                                     <barButtonItem title="Ksana" id="jyY-rZ-wdm"/>
-                                    <barButtonItem title="MainButton" id="xvI-Us-Rbu"/>
+                                    <barButtonItem title="MainButton" id="xvI-Us-Rbu">
+                                        <connections>
+                                            <action selector="NextPressed:" destination="XnR-Ui-pT9" id="ish-m6-CzG"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Library" id="G7D-9B-y9Z"/>
                                     <barButtonItem title="Settings" id="ZEe-wK-DKA"/>
                                 </items>
@@ -374,6 +378,7 @@
                         <outlet property="ScrollView" destination="Rdg-Of-nOg" id="IQi-ue-lFG"/>
                         <outlet property="SignatureTextField" destination="eBN-H7-kRX" id="cEW-MA-3LD"/>
                         <outlet property="TitleTextField" destination="4pe-Zw-bVZ" id="KMx-Yg-qx0"/>
+                        <outlet property="Toolbar" destination="B6c-6i-vF5" id="tKV-Ck-pqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yif-cF-7WL" userLabel="First Responder" sceneMemberID="firstResponder"/>

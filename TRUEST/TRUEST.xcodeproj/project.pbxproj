@@ -12,6 +12,7 @@
 		6B0468C21D9E528E00AD3005 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0468BF1D9E528E00AD3005 /* FBSDKCoreKit.framework */; };
 		6B0468C31D9E528E00AD3005 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0468C01D9E528E00AD3005 /* FBSDKLoginKit.framework */; };
 		6B0468C41D9E528E00AD3005 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0468C11D9E528E00AD3005 /* FBSDKShareKit.framework */; };
+		6B1AF30A1DA238A5004B706A /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1AF3091DA238A5004B706A /* Manager.swift */; };
 		6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */; };
 		6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */; };
 		6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */; };
@@ -24,11 +25,12 @@
 
 /* Begin PBXFileReference section */
 		5DAC296C625582959AC9C180 /* Pods-TRUEST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRUEST.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST.debug.xcconfig"; sourceTree = "<group>"; };
-		6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6B0468AB1D9E3C0200AD3005 /* UIColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColors.swift; sourceTree = "<group>"; };
 		6B0468BF1D9E528E00AD3005 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6B0468C01D9E528E00AD3005 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		6B0468C11D9E528E00AD3005 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		6B1AF3091DA238A5004B706A /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBondViewController.swift; sourceTree = "<group>"; };
 		6BE1D1821D9904AD001B19E0 /* TRUEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRUEST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +84,6 @@
 		6BE1D1791D9904AD001B19E0 = {
 			isa = PBXGroup;
 			children = (
-				6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */,
 				6BE1D1841D9904AD001B19E0 /* TRUEST */,
 				6BE1D1831D9904AD001B19E0 /* Products */,
 				FAB0215C8D43D932AA770B7A /* Pods */,
@@ -101,12 +102,14 @@
 		6BE1D1841D9904AD001B19E0 /* TRUEST */ = {
 			isa = PBXGroup;
 			children = (
+				6B0468A91D9E36FB00AD3005 /* GoogleService-Info.plist */,
 				6B81D2B21D9FE6DA00D42BA8 /* supporting */,
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
 				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
 				6B0468AB1D9E3C0200AD3005 /* UIColors.swift */,
 				6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */,
+				6B1AF3091DA238A5004B706A /* Manager.swift */,
 			);
 			path = TRUEST;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BE1D18E1D9904AD001B19E0 /* TRUEST.xcdatamodeld in Sources */,
+				6B1AF30A1DA238A5004B706A /* Manager.swift in Sources */,
 				6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */,
 				6B0468AC1D9E3C0200AD3005 /* UIColors.swift in Sources */,
 				6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */,
