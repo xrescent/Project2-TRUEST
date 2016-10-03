@@ -67,6 +67,7 @@ extension AddBondViewController{
         }
         
         AddPhotoDescription.hidden = true
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
         dismissViewControllerAnimated(true, completion: nil)
     }
 
@@ -88,6 +89,17 @@ extension AddBondViewController{
         self.view.endEditing(true)
     }
     
+//    在UITextView中只有一個return鍵，但user可能會同時需要「斷行」、「結束」兩個功能
+//    // return keyboard when 'return' pressed in UITextView
+//    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+//        if text == "\n" {
+//            textView.resignFirstResponder()
+//            return false
+//        } else {
+//            return true
+//        }
+//    }
+    
     func textFieldDidBeginEditing(textField: UITextField) {
         switch textField {
         case TitleTextField:
@@ -99,6 +111,14 @@ extension AddBondViewController{
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        ScrollView.setContentOffset(CGPointMake(0, 180), animated: true)
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
 }
