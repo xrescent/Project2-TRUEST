@@ -14,6 +14,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var ContentView: UIView!
     @IBOutlet weak var PostcardImage: UIImageView!
     @IBOutlet weak var AddPhotoPress: UIButton!
+    @IBOutlet weak var AddPhotoDescription: UILabel!
     @IBOutlet weak var TitleTextField: UITextField!
     @IBOutlet weak var SignatureTextField: UITextField!
     @IBOutlet weak var ContextTextField: UITextView!
@@ -50,6 +51,21 @@ extension AddBondViewController {
         guard let concelImage = UIImage(named: "icon_close_button") else {fatalError()}
         ConcelPress.setImage(concelImage, forState: .Normal)
         ConcelPress.addTarget(self, action: #selector(AddBondViewController.AbortSelectedImage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+    }
+}
+
+
+extension AddBondViewController{
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            PostcardImage.contentMode = .ScaleToFill
+            PostcardImage.image = pickedImage
+            self.pickedImage = pickedImage as UIImage
+        }
+        
+        AddPhotoDescription.hidden = true
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 

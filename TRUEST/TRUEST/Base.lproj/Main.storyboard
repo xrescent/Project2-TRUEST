@@ -243,7 +243,6 @@
                                                     <constraint firstAttribute="height" constant="220" id="LNN-dk-jFo"/>
                                                     <constraint firstAttribute="width" constant="500" id="cIs-0L-Inn"/>
                                                 </constraints>
-                                                <state key="normal" title="Add a photo/clip from your device"/>
                                                 <connections>
                                                     <action selector="SelectImage:" destination="XnR-Ui-pT9" eventType="touchUpInside" id="kKa-rn-Cjk"/>
                                                 </connections>
@@ -286,13 +285,25 @@
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a photo/clip from your device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-Rm-HpF">
+                                                <rect key="frame" x="0.0" y="99" width="500" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="500" id="Eub-tk-kSF"/>
+                                                    <constraint firstAttribute="height" constant="21" id="n6L-n7-BOx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="biF-Gi-GMY" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="1Cp-OW-5Aj"/>
+                                            <constraint firstItem="mwu-Rm-HpF" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="6up-YA-HYJ"/>
                                             <constraint firstItem="Z01-gH-fm7" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="AvR-LR-hk2"/>
                                             <constraint firstItem="9tm-YS-x5p" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" constant="20" id="CK6-xQ-QwY"/>
                                             <constraint firstItem="eBN-H7-kRX" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="Evw-dt-1YR"/>
+                                            <constraint firstItem="mwu-Rm-HpF" firstAttribute="top" secondItem="9tm-YS-x5p" secondAttribute="bottom" constant="34" id="Hay-VS-x0m"/>
                                             <constraint firstItem="eBN-H7-kRX" firstAttribute="top" secondItem="6QO-mC-WPb" secondAttribute="bottom" constant="8" id="O7m-dD-6th"/>
                                             <constraint firstAttribute="width" constant="600" id="PKV-8I-LN2"/>
                                             <constraint firstItem="6QO-mC-WPb" firstAttribute="top" secondItem="4pe-Zw-bVZ" secondAttribute="bottom" constant="8" id="Qf0-yu-BOe"/>
@@ -353,6 +364,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="AddPhotoDescription" destination="mwu-Rm-HpF" id="icJ-c9-lHk"/>
                         <outlet property="AddPhotoPress" destination="Z01-gH-fm7" id="Xyo-CI-A6E"/>
                         <outlet property="ConcelPress" destination="9tm-YS-x5p" id="ENR-MT-rjp"/>
                         <outlet property="ContentView" destination="FS8-ei-Jxa" id="hH9-V1-sMU"/>
