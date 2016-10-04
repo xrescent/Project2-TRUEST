@@ -92,7 +92,7 @@ extension AddBondViewController{
         let sendAPostcard: [String: AnyObject] = ["title": currentTextOfTitle,
                                                     "context": currentTextOfContext,
                                                     "signature": currentTextOfSignature,
-                                                    "image": true]
+                                                    "image": 1] //記得image狀態改成Bool，影音大概也要變這樣
         
         let postcardSentRef = databaseRef.child("postcards").childByAutoId()
         let postcardSentUid = postcardSentRef.key
@@ -170,9 +170,9 @@ extension AddBondViewController{
     func textFieldDidBeginEditing(textField: UITextField) {
         switch textField {
         case TitleTextField:
-            ScrollView.setContentOffset(CGPointMake(0, 150), animated: true)
+            ScrollView.setContentOffset(CGPointMake(0, 100), animated: true)
         case SignatureTextField:
-            ScrollView.setContentOffset(CGPointMake(0, 225), animated: true)
+            ScrollView.setContentOffset(CGPointMake(0, 2), animated: true)
         default: break
         }
     }
@@ -190,7 +190,7 @@ extension AddBondViewController{
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
-        ScrollView.setContentOffset(CGPointMake(0, 180), animated: true)
+        ScrollView.setContentOffset(CGPointMake(0, 150), animated: true)
     }
     
     func textViewDidEndEditing(textView: UITextView) {

@@ -13,8 +13,8 @@ import FirebaseDatabase
 struct Postcard {
     let sender: String! = "user'UID on firebase database"
 //    let receivers: [String]!
-//    let creation_time: NSDate!
-//    let last_edit_time: NSDate!
+//    let created_time: NSDate!
+//    let last_edited_time: NSDate!
 //    let sent_time: NSDate?
 //    let delivered_time: NSDate?
     let title: String!
@@ -23,11 +23,22 @@ struct Postcard {
     let image: NSData?
 //    let audio: NSData?
 //    let video: NSData?
-//    let urgency: Bool! = false
+//    let urgency: Int! = 0
 //    let deliver_condition: String!
 //    let specific_date: NSDate?
 //    let relative_days: Int?
 }
+
+/*
+ 建立兩個storage table
+ core data是local的
+ firebase是要上傳server的
+ 定義好兩者各自的data type
+ 
+ 1)先存好存到core data
+ 2)寫一個model來轉型core data -> firebase
+ 3)上傳存到firebase
+*/
 
 //class Manager {
 //    
