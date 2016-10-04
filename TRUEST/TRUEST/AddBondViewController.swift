@@ -93,14 +93,19 @@ extension AddBondViewController{
         let sendAPostcard: [String: AnyObject] = ["title": currentTextOfTitle,
                                                     "context": currentTextOfContext,
                                                     "signature": currentTextOfSignature,
-                                                    "image": 1] //記得image狀態改成Bool，影音大概也要變這樣
+                                                    "image": 1] //記得image改成storage檔案的檔名
         
-        let postcardSentRef = databaseRef.child("postcards").childByAutoId()
+        let postcardSentRef = databaseRef.child("postcards").childByAutoId() // 在data base 並產生postcard's uid
+        
         let postcardSentUid = postcardSentRef.key
-        let imagePath = postcardSentUid // 該圖片存在firebase storage上的名稱
-        postcardSentRef.setValue(sendAPostcard)
-        storageRef = FIRStorage.storage().reference().child(imagePath)//在儲存到firebase storage前記得要去更改rule讓read,write = if true
-        storageRef.putData(imageData, metadata: nil) { (metadata, error) in
+        
+        let imagePath = postcardSentUid + "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"// 該圖片存在firebase storage上的名稱
+        
+        postcardSentRef.setValue(sendAPostcard) //將postcard的資料新增進database
+        
+        storageRef = FIRStorage.storage().reference().child(imagePath) //指定strage要存的相關資訊
+        //在儲存到firebase storage前記得要去更改rule讓read,write = if true
+        storageRef.putData(imageData, metadata: nil) { (metadata, error) in //將照片存入storage中
             
             if let error = error {
                 print("Error upload image: \(error)")
@@ -143,7 +148,9 @@ extension AddBondViewController{
         } catch {
             print("Error in saving newPostcard into core data")
         }
-//        print("core data Postcard: \(Postcard)")
+        
+        let aa = myPostcards
+        print("core data Postcard: \(aa)")
     }
     
 }
