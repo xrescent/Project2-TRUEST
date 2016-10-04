@@ -20,13 +20,26 @@ struct Postcard {
     let title: String!
     let context: String!
     let signature: String!
-    let image: NSData?
-//    let audio: NSData?
-//    let video: NSData?
+    let imageUrl: String! //先設成都是non-optional，若無實在塞""來判斷是否有值
+//    let audioUrl: NSData?
+//    let videoUrl: NSData?
 //    let urgency: Int! = 0
 //    let deliver_condition: String!
 //    let specific_date: NSDate?
 //    let relative_days: Int?
+}
+
+extension Postcard {
+    func toDictionary() -> [String: AnyObject?] {
+        let postcardDictionary: [String: AnyObject]
+        postcardDictionary =  ["sender": self.sender,
+                                            "title": self.title,
+                                            "context": self.context,
+                                            "signature": self.signature,
+                                            "imageUrl": self.imageUrl]
+        
+        return postcardDictionary
+    }
 }
 
 /*

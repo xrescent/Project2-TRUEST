@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import CoreData
 
 class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -28,10 +29,12 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     var pickedImage = UIImage()
     var imageData = NSData()
+    var imageUrl = String()
     private let imagePicker = UIImagePickerController()
     
-    var myPostcards: [Postcard] = []
-    var currentTextOfTitle: String! = "Edit title here"
+    var newPostcard: [Postcard] = []
+    var myPostcards = [NSManagedObject]()
+    var currentTextOfTitle: String! = "Edit title here"  //先設計成"!"，之後再改成?並在儲存時判斷是否為nil，若為nil則塞預設值給它
     var currentTextOfSignature: String! = "Sign up your name here"
     var currentTextOfContext: String! = "What I want to say is..."
     
@@ -53,8 +56,6 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         ContextTextField.delegate = self
         SignatureTextField.delegate = self
         imagePicker.delegate = self
-     
-
 
         
     }
@@ -76,18 +77,18 @@ extension AddBondViewController {
 }
 
 extension AddBondViewController{
-    private func next() {
+    func next() { //下一步應為寄送條件設定，這裡先暫時做成儲存至core data
         
-        let imageData = UIImagePNGRepresentation(pickedImage)
-        myPostcards.append(Postcard(title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, image: imageData))
-        post()
+        newPostcard.append(Postcard(title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, imageUrl: imageUrl))
+        
+        savePostcard(newPostcard)
     }
     
     func configureStorage() {
         storageRef = FIRStorage.storage().referenceForURL("gs://truest-625dd.appspot.com/")
     }
     
-    func post() {
+    func post() { // upload to server
         
         let sendAPostcard: [String: AnyObject] = ["title": currentTextOfTitle,
                                                     "context": currentTextOfContext,
@@ -116,6 +117,35 @@ extension AddBondViewController{
 ////            strongSelf.myPostcards.append(snapshot)
 //            })
 //    }
+    
+    
+    func savePostcard(postcardToSave: [Postcard]) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity = NSEntityDescription.entityForName("Postcard", inManagedObjectContext: managedContext)
+        
+        let newPostcard = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        let postcardToSaveInfo = postcardToSave[0].toDictionary()
+        
+//        newPostcard.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
+        for (key, value) in postcardToSaveInfo {
+            newPostcard.setValue(value, forKey: key)
+        }
+        
+        do {
+            try managedContext.save()
+            
+            myPostcards.append(newPostcard)
+        } catch {
+            print("Error in saving newPostcard into core data")
+        }
+//        print("core data Postcard: \(Postcard)")
+    }
+    
 }
 
 
@@ -128,6 +158,9 @@ extension AddBondViewController{
         PostcardImage.image = pickedImage
         self.pickedImage = pickedImage as UIImage
         imageData = UIImageJPEGRepresentation(pickedImage, 1.0)! //將所選取的image轉型成NSData，不壓縮
+        
+        guard let url = info[UIImagePickerControllerReferenceURL] as? NSURL else { fatalError() }
+        imageUrl = url.absoluteString
         
         AddPhotoDescription.hidden = true
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
