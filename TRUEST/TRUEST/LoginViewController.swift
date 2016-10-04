@@ -8,8 +8,10 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 import FBSDKCoreKit
 import FBSDKLoginKit
+import CoreData
 
 class LoginViewController: UIViewController {
 
@@ -18,12 +20,26 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginDescription: UILabel!
     @IBOutlet weak var facebookLabel: UILabel!
     @IBOutlet weak var facebookButton: UIButton!
-    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup()
+        
+        FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
+            if user != nil {
+                // user is signed in
+                // move user to homeViewController
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
+                
+                self.presentViewController(homeViewController, animated: true, completion: nil)
+
+            } else {
+                // user is not signed in
+                // setup UIs for LoginViewController
+                self.setup()
+            }
+        }
     }
     
 }
@@ -41,7 +57,6 @@ extension LoginViewController {
         facebookButton.setTitle("", forState: .Normal) // use setTitle to set button's title, don't use titleLabel
         facebookButton.layer.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).CGColor
         
-        
     }
 }
 
@@ -49,15 +64,15 @@ extension LoginViewController {
 extension LoginViewController {
     @IBAction func loginWithFacebook(sender: AnyObject) {
         
-        // create a reference to a Firebase location
-        let myRootRef = FIRDatabase.database().reference()
-        
         let fbLoginManager = FBSDKLoginManager()
+        
         fbLoginManager.logInWithReadPermissions(["public_profile", "email"], handler: { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
+            
             if let error = error {
                 print("FB login error: \(error)")
                 return
             }
+            
             if result.isCancelled {
                 print("Cancle button pressed")
             } else {
@@ -68,9 +83,15 @@ extension LoginViewController {
                 
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 
-//                myRootRef.
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
+                
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                }
             }
         })
+        
+
+        
     }
 }
 
@@ -84,11 +105,8 @@ extension LoginViewController {
                     print("FB user data access error: \(error)")
                     return
                 }
-//                let a = result["name"]
-//                print("\(a)")
-//                
-//                print("\(result)")
-                guard let  result = result as? NSDictionary,    // The value property is a id (AnyObject) and you might need to cast it to dictionary yourself.
+
+                guard let  result = result as? NSDictionary,
                                 name = result["name"] as? String,
                                 id = result["id"] as? String,
                                 email = result["email"] as? String,
@@ -97,21 +115,56 @@ extension LoginViewController {
                                 data = picture["data"] as? NSDictionary,
                                 url = data["url"] as? String
                     else {
-                let error = error
-                print("Error: \(error)")
+                        let error = error
+                        print("Error: \(error)")
                         return
                 }
                 
-                print("\(name)")
-//
-//                let userDefaults_fbLoginData = NSUserDefaults.standardUserDefaults()
-//                     userDefaults_fbLoginData.setObject(name, forKey: "FB_userName")
-//                     userDefaults_fbLoginData.setObject(id, forKey: "FB_userID")
-//                     userDefaults_fbLoginData.setObject(email, forKey: "FB_userEmail")
-//                     userDefaults_fbLoginData.setObject(link, forKey: "FB_userLink")
-//                     userDefaults_fbLoginData.setObject(url, forKey: "FB_userPictureURL")
+                let userInfo: [String: AnyObject] =  [ "fbID": id, "name": name, "email": email, "fbProfileLink": link, "pictureUrl": url ]
+                
+                self.setupUserInfo(userInfo)
+
+//let userDefaults_fbLoginData = NSUserDefaults.standardUserDefaults()
+//userDefaults_fbLoginData.setObject(name, forKey: "FB_userName")
+//userDefaults_fbLoginData.setObject(id, forKey: "FB_userID")
+//userDefaults_fbLoginData.setObject(email, forKey: "FB_userEmail")
+//userDefaults_fbLoginData.setObject(link, forKey: "FB_userLink")
+//userDefaults_fbLoginData.setObject(url, forKey: "FB_userPictureURL")
             })
         }
     }
 }
+
+extension UIViewController {
+    func setupUserInfo(userInfo: [String: AnyObject]) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let entity = NSEntityDescription.entityForName("FBUser", inManagedObjectContext: managedContext)
+        
+        let user = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        
+        for (key, value) in userInfo {
+            user.setValue(value, forKey: key)
+        }
+        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Error in saving userInfo into core data")
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
+
 

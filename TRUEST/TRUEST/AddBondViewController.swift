@@ -136,7 +136,6 @@ extension AddBondViewController{
         
         let postcardToSaveInfo = postcardToSave[0].toDictionary()
         
-//        newPostcard.setValue(<#T##value: AnyObject?##AnyObject?#>, forKey: <#T##String#>)
         for (key, value) in postcardToSaveInfo {
             newPostcard.setValue(value, forKey: key)
         }
@@ -144,7 +143,7 @@ extension AddBondViewController{
         do {
             try managedContext.save()
             
-            myPostcards.append(newPostcard)
+            myPostcards.append(newPostcard) //好像也沒用到，在這裡存這幹嘛？底下的aa也記得要一起刪掉
         } catch {
             print("Error in saving newPostcard into core data")
         }

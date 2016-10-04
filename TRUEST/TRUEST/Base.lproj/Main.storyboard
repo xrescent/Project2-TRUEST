@@ -101,7 +101,7 @@
                                 </constraints>
                                 <state key="normal" title="way2"/>
                                 <connections>
-                                    <segue destination="XnR-Ui-pT9" kind="show" id="auX-eS-gFp"/>
+                                    <action selector="loginWithFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nL7-b3-L42"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -195,7 +195,7 @@
         <!--Add Bond View Controller-->
         <scene sceneID="eMs-6h-WBm">
             <objects>
-                <viewController id="XnR-Ui-pT9" customClass="AddBondViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddBondViewController" id="XnR-Ui-pT9" customClass="AddBondViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Jq-sj-ggV"/>
                         <viewControllerLayoutGuide type="bottom" id="TYy-zU-am2"/>
