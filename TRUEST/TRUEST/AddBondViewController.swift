@@ -27,19 +27,18 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-    var pickedImage = UIImage()
-    var imageData = NSData()
-    var imageUrl = String()
+    private var pickedImage = UIImage()
+    private var imageData = NSData()
+    private var imageUrl = String()
     private let imagePicker = UIImagePickerController()
     
-    var newPostcard: [PostcardInDrawer] = []
-    var myPostcards = [NSManagedObject]()
-    var currentTextOfTitle: String! = "Edit title here"  //先設計成"!"，之後再改成?並在儲存時判斷是否為nil，若為nil則塞預設值給它
-    var currentTextOfSignature: String! = "Sign up your name here"
-    var currentTextOfContext: String! = "What I want to say is..."
+    private var newPostcard: [PostcardInDrawer] = []
+    private var myPostcards = [NSManagedObject]()
+    private var currentTextOfTitle: String! = "Edit title here"  //先設計成"!"，之後再改成?並在儲存時判斷是否為nil，若為nil則塞預設值給它
+    private var currentTextOfSignature: String! = "Sign up your name here"
+    private var currentTextOfContext: String! = "What I want to say is..."
     
-    var storageRef: FIRStorageReference!
-    private let databaseRef  = FIRDatabase.database().reference()
+    private var storageRef: FIRStorageReference!
     private var _refHandle: FIRDatabaseHandle!
 
     @IBOutlet weak var Toolbar: UIToolbar!
@@ -60,6 +59,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         ContextTextField.delegate = self
         SignatureTextField.delegate = self
         imagePicker.delegate = self
+
 
         
     }
@@ -94,7 +94,7 @@ extension AddBondViewController{
     
     
     func uploadPostcard() { // upload to server
-        let postcardSentRef = databaseRef.child("postcards").childByAutoId() // 在data base 並產生postcard's uid
+        let postcardSentRef = firebaseDatabaseRef.shared.child("postcards").childByAutoId() // 在data base 並產生postcard's uid
         
         let postcardSentUid = postcardSentRef.key
         
@@ -126,7 +126,7 @@ extension AddBondViewController{
     }
     
 //    func request() {          下載
-//        _refHandle = self.databaseRef.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
+//        _refHandle = firebaseDatabaseRef.shared.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
 //            guard let strongSelf = self else { return }
 ////            strongSelf.myPostcards.append(snapshot)
 //            })

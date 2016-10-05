@@ -105,7 +105,7 @@ extension LoginViewController {
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 }
                 
-                self.uploadFBUserInfo()
+                self.uploadFBUserInfo() //之後要再加一個判斷if該user已經在firebase上存在了，就不再新增而是updata (應另寫一個func)
             }
         })
         
@@ -230,7 +230,7 @@ extension UIViewController {
 
     
     func uploadFBUserInfo() {
-        let fbUserInfoSentRef = FIRDatabase.database().reference().child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
+        let fbUserInfoSentRef = firebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -238,22 +238,28 @@ extension UIViewController {
         
         let request = NSFetchRequest(entityName: "FBUser")
         
+        var tempUserInfo = [String: AnyObject]()
+        
         do {
             let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+
+            tempUserInfo["fbID"] = results[0].fbID
+            tempUserInfo["name"] = results[0].name
+            tempUserInfo["email"] = results[0].email
+            tempUserInfo["pictureUrl"] = results[0].pictureUrl
             
-            let c = results.count
-            print("FBUser number: \(c)")
-            print("\(results[0])")
+            fbUserInfoSentRef.setValue(tempUserInfo)
             
         }catch{
             fatalError("Failed to fetch data: \(error)")
         }
-
-        
-        
+   
     }
+    
 
 }
+
+
 
 
 

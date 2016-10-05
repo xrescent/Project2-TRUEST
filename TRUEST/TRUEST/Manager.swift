@@ -62,7 +62,12 @@ extension PostcardInDrawer {
 //}
 
 
-
+class firebaseDatabaseRef {
+    static let shared = FIRDatabase.database().reference()
+    
+    //    weak
+    //    public let databaseRef  = FIRDatabase.database().reference()
+}
 
 
 
