@@ -101,7 +101,7 @@
                                 </constraints>
                                 <state key="normal" title="way2"/>
                                 <connections>
-                                    <segue destination="XnR-Ui-pT9" kind="show" id="auX-eS-gFp"/>
+                                    <action selector="loginWithFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nL7-b3-L42"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -195,7 +195,7 @@
         <!--Add Bond View Controller-->
         <scene sceneID="eMs-6h-WBm">
             <objects>
-                <viewController id="XnR-Ui-pT9" customClass="AddBondViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddBondViewController" id="XnR-Ui-pT9" customClass="AddBondViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Jq-sj-ggV"/>
                         <viewControllerLayoutGuide type="bottom" id="TYy-zU-am2"/>
@@ -213,9 +213,17 @@
                                 <items>
                                     <barButtonItem title="Intimates" id="5cx-S2-F0j"/>
                                     <barButtonItem title="Ksana" id="jyY-rZ-wdm"/>
-                                    <barButtonItem title="MainButton" id="xvI-Us-Rbu"/>
+                                    <barButtonItem title="MainButton" id="xvI-Us-Rbu">
+                                        <connections>
+                                            <action selector="NextPressed:" destination="XnR-Ui-pT9" id="ish-m6-CzG"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Library" id="G7D-9B-y9Z"/>
-                                    <barButtonItem title="Settings" id="ZEe-wK-DKA"/>
+                                    <barButtonItem title="Settings" id="ZEe-wK-DKA">
+                                        <connections>
+                                            <action selector="UploadPressed:" destination="XnR-Ui-pT9" id="31T-I2-6Bp"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rdg-Of-nOg">
@@ -243,7 +251,6 @@
                                                     <constraint firstAttribute="height" constant="220" id="LNN-dk-jFo"/>
                                                     <constraint firstAttribute="width" constant="500" id="cIs-0L-Inn"/>
                                                 </constraints>
-                                                <state key="normal" title="Add a photo/clip from your device"/>
                                                 <connections>
                                                     <action selector="SelectImage:" destination="XnR-Ui-pT9" eventType="touchUpInside" id="kKa-rn-Cjk"/>
                                                 </connections>
@@ -284,15 +291,28 @@
                                                     <constraint firstAttribute="width" constant="36" id="GbD-Lp-YAB"/>
                                                     <constraint firstAttribute="height" constant="36" id="afA-48-vh7"/>
                                                 </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="Button"/>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a photo/clip from your device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-Rm-HpF">
+                                                <rect key="frame" x="0.0" y="99" width="500" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="500" id="Eub-tk-kSF"/>
+                                                    <constraint firstAttribute="height" constant="21" id="n6L-n7-BOx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="biF-Gi-GMY" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="1Cp-OW-5Aj"/>
+                                            <constraint firstItem="mwu-Rm-HpF" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="6up-YA-HYJ"/>
                                             <constraint firstItem="Z01-gH-fm7" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="AvR-LR-hk2"/>
                                             <constraint firstItem="9tm-YS-x5p" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" constant="20" id="CK6-xQ-QwY"/>
                                             <constraint firstItem="eBN-H7-kRX" firstAttribute="leading" secondItem="FS8-ei-Jxa" secondAttribute="leading" id="Evw-dt-1YR"/>
+                                            <constraint firstItem="mwu-Rm-HpF" firstAttribute="top" secondItem="9tm-YS-x5p" secondAttribute="bottom" constant="34" id="Hay-VS-x0m"/>
                                             <constraint firstItem="eBN-H7-kRX" firstAttribute="top" secondItem="6QO-mC-WPb" secondAttribute="bottom" constant="8" id="O7m-dD-6th"/>
                                             <constraint firstAttribute="width" constant="600" id="PKV-8I-LN2"/>
                                             <constraint firstItem="6QO-mC-WPb" firstAttribute="top" secondItem="4pe-Zw-bVZ" secondAttribute="bottom" constant="8" id="Qf0-yu-BOe"/>
@@ -353,6 +373,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="AddPhotoDescription" destination="mwu-Rm-HpF" id="icJ-c9-lHk"/>
                         <outlet property="AddPhotoPress" destination="Z01-gH-fm7" id="Xyo-CI-A6E"/>
                         <outlet property="ConcelPress" destination="9tm-YS-x5p" id="ENR-MT-rjp"/>
                         <outlet property="ContentView" destination="FS8-ei-Jxa" id="hH9-V1-sMU"/>
@@ -361,11 +382,66 @@
                         <outlet property="ScrollView" destination="Rdg-Of-nOg" id="IQi-ue-lFG"/>
                         <outlet property="SignatureTextField" destination="eBN-H7-kRX" id="cEW-MA-3LD"/>
                         <outlet property="TitleTextField" destination="4pe-Zw-bVZ" id="KMx-Yg-qx0"/>
+                        <outlet property="Toolbar" destination="B6c-6i-vF5" id="tKV-Ck-pqu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yif-cF-7WL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1507" y="1046"/>
+        </scene>
+        <!--Drawer View Controller-->
+        <scene sceneID="BTM-lE-sm1">
+            <objects>
+                <viewController storyboardIdentifier="DrawerViewController" id="88y-Ng-J2q" customClass="DrawerViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VyK-wQ-doe"/>
+                        <viewControllerLayoutGuide type="bottom" id="7vX-vE-buk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="14Q-fL-cpr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hhJ-Oi-TnN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="lYB-HQ-Lcz">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="NxH-VZ-X9f"/>
+                                    <constraint firstAttribute="width" constant="600" id="Yg6-kJ-9QK"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Intimates" id="DpJ-RY-wQG"/>
+                                    <barButtonItem title="Ksana" id="Mqk-7o-waQ"/>
+                                    <barButtonItem title="MainButton" id="6Gm-ye-NkO">
+                                        <connections>
+                                            <action selector="NextPressed:" destination="XnR-Ui-pT9" id="FMf-ib-TMl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Library" id="OQP-Cp-Rgb"/>
+                                    <barButtonItem title="Settings" id="udr-je-n9q">
+                                        <connections>
+                                            <action selector="UploadPressed:" destination="XnR-Ui-pT9" id="19l-Z0-ReE"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7vX-vE-buk" firstAttribute="top" secondItem="lYB-HQ-Lcz" secondAttribute="bottom" id="7bw-r4-wbf"/>
+                            <constraint firstItem="7vX-vE-buk" firstAttribute="top" secondItem="hhJ-Oi-TnN" secondAttribute="bottom" constant="44" id="MdL-rx-fVq"/>
+                            <constraint firstItem="lYB-HQ-Lcz" firstAttribute="leading" secondItem="14Q-fL-cpr" secondAttribute="leading" id="Ymp-3r-Nfh"/>
+                            <constraint firstItem="hhJ-Oi-TnN" firstAttribute="leading" secondItem="14Q-fL-cpr" secondAttribute="leading" id="c35-zs-bqJ"/>
+                            <constraint firstItem="hhJ-Oi-TnN" firstAttribute="top" secondItem="14Q-fL-cpr" secondAttribute="top" id="hj2-ii-bkS"/>
+                            <constraint firstAttribute="trailing" secondItem="hhJ-Oi-TnN" secondAttribute="trailing" id="mAW-MC-ksN"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4K-n5-cwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2189" y="1039"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mnU-ZH-cr3">
