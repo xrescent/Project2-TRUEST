@@ -32,7 +32,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     var imageUrl = String()
     private let imagePicker = UIImagePickerController()
     
-    var newPostcard: [Postcard] = []
+    var newPostcard: [PostcardInDrawer] = []
     var myPostcards = [NSManagedObject]()
     var currentTextOfTitle: String! = "Edit title here"  //先設計成"!"，之後再改成?並在儲存時判斷是否為nil，若為nil則塞預設值給它
     var currentTextOfSignature: String! = "Sign up your name here"
@@ -79,7 +79,7 @@ extension AddBondViewController {
 extension AddBondViewController{
     func next() { //下一步應為寄送條件設定，這裡先暫時做成儲存至core data
         
-        newPostcard.append(Postcard(title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, imageUrl: imageUrl))
+        newPostcard.append(PostcardInDrawer(title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, imageUrl: imageUrl))
         
         savePostcard(newPostcard)
     }
@@ -105,7 +105,12 @@ extension AddBondViewController{
         
         storageRef = FIRStorage.storage().reference().child(imagePath) //指定strage要存的相關資訊
         //在儲存到firebase storage前記得要去更改rule讓read,write = if true
-        storageRef.putData(imageData, metadata: nil) { (metadata, error) in //將照片存入storage中
+        
+        // 定義上傳資料的metadata，以便日後去判斷此筆資料是image/audio/video，並呼叫對應的方始來開啟該檔案
+        let metadata = FIRStorageMetadata()
+        metadata.contentType = "image/jpg"
+        
+        storageRef.putData(imageData, metadata: metadata) { (metadata, error) in //將照片存入storage中
             
             if let error = error {
                 print("Error upload image: \(error)")
@@ -124,7 +129,7 @@ extension AddBondViewController{
 //    }
     
     
-    func savePostcard(postcardToSave: [Postcard]) {
+    func savePostcard(postcardToSave: [PostcardInDrawer]) {
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         

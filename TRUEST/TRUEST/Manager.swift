@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-struct Postcard {
+struct PostcardInDrawer {
     let sender: String! = "user'UID on firebase database"
 //    let receivers: [String]!
 //    let created_time: NSDate!
@@ -29,7 +29,7 @@ struct Postcard {
 //    let relative_days: Int?
 }
 
-extension Postcard {
+extension PostcardInDrawer {
     func toDictionary() -> [String: AnyObject?] {
         let postcardDictionary: [String: AnyObject]
         postcardDictionary =  ["sender": self.sender,

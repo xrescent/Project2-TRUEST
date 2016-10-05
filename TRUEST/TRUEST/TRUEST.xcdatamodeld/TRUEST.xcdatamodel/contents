@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G1004" minimumToolsVersion="Automatic">
-    <entity name="FBUser" syncable="YES">
+    <entity name="FBUser" representedClassName=".FBUser" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fbID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fbProfileLink" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,7 +8,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureUrl" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Postcard" syncable="YES">
+    <entity name="Postcard" representedClassName=".Postcard" syncable="YES">
         <attribute name="audio" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="context" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created_time" optional="YES" attributeType="Date" syncable="YES"/>

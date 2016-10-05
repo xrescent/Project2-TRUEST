@@ -25,27 +25,33 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
-            if user != nil {
-                // user is signed in
-                // move user to homeViewController
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
-                
-                self.presentViewController(homeViewController, animated: true, completion: nil)
-
-            } else {
-                // user is not signed in
-                // setup UIs for LoginViewController
-                self.setup()
-            }
-        }
+/////////////// 判斷user是否登入過，給予不同的開場畫面 ///////////
+//        FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
+//            if user != nil {
+//                // user is signed in
+//                // move user to homeViewController
+//                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
+//                
+//                self.presentViewController(homeViewController, animated: true, completion: nil)
+//
+//            } else {
+//                // user is not signed in
+//                // setup UIs for LoginViewController
+//                self.setup()
+//            }
+//        }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        setup()
     }
     
 }
 
 extension LoginViewController {
     private func setup() {
+        
+        // login label for Facebook
         facebookLabel.text = "f"
         facebookLabel.font = UIFont(name: (facebookLabel.font?.fontName)!, size: 30)
         facebookLabel.textAlignment = .Center
@@ -54,6 +60,7 @@ extension LoginViewController {
         facebookLabel.layer.masksToBounds = true
         facebookLabel.layer.cornerRadius = facebookLabel.frame.width/2  // it's a circle base on it's size 
         
+        // a invisible login button for Facebook
         facebookButton.setTitle("", forState: .Normal) // use setTitle to set button's title, don't use titleLabel
         facebookButton.layer.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).CGColor
         
@@ -62,8 +69,10 @@ extension LoginViewController {
 
 
 extension LoginViewController {
+    // when clicking Facebook login button
     @IBAction func loginWithFacebook(sender: AnyObject) {
         
+        // get Facebook login authentication
         let fbLoginManager = FBSDKLoginManager()
         
         fbLoginManager.logInWithReadPermissions(["public_profile", "email"], handler: { (result: FBSDKLoginManagerLoginResult!, error: NSError!) -> Void in
@@ -76,16 +85,24 @@ extension LoginViewController {
             if result.isCancelled {
                 print("Cancle button pressed")
             } else {
-//                self.dismissViewControllerAnimated(true, completion: nil)
+                // permission get
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
                 self.getFBUserData()
-//                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                //                _= AppDelegate.switchToBondViewController()
+//// link to the page (UIViewController) we want
+//    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//    _= AppDelegate.switchToBondViewController()
                 
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
                 
+                // using fb access token to sign in to firebase
                 let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
                 
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+
+                    let ref = FIRDatabase.database().reference()
+                    
+                    print("\(ref)")
                 }
             }
         })
@@ -97,10 +114,14 @@ extension LoginViewController {
 
 
 extension LoginViewController {
+    
     private func getFBUserData() {
+        
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             let parameters = ["fields": "name, id, picture.type(large), email, link"]
+            
             FBSDKGraphRequest(graphPath: "me", parameters: parameters).startWithCompletionHandler({ (connection, result, error) -> Void in
+                
                 if let error = error {
                     print("FB user data access error: \(error)")
                     return
@@ -120,10 +141,14 @@ extension LoginViewController {
                         return
                 }
                 
+                // convert those data's format so we can save it into core data
                 let userInfo: [String: AnyObject] =  [ "fbID": id, "name": name, "email": email, "fbProfileLink": link, "pictureUrl": url ]
                 
+                // save those data into core data: FBUser
+                self.cleanUserInfo()
                 self.setupUserInfo(userInfo)
 
+//// method: save into userDefaults
 //let userDefaults_fbLoginData = NSUserDefaults.standardUserDefaults()
 //userDefaults_fbLoginData.setObject(name, forKey: "FB_userName")
 //userDefaults_fbLoginData.setObject(id, forKey: "FB_userID")
@@ -136,8 +161,34 @@ extension LoginViewController {
 }
 
 extension UIViewController {
-    func setupUserInfo(userInfo: [String: AnyObject]) {
+    
+    // delete all data in FBUser. because it is allowed only one user at the same time
+    func cleanUserInfo() {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
+        let managedContext = appDelegate.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "FBUser")
+        
+        do {
+            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+            
+            for result in results {
+                managedContext.deleteObject(result)
+            }
+        }catch {
+            print("Error in deleting core data: FBUser")
+        }
+        
+        do {
+            try managedContext.save()
+        } catch {
+            print("Error in updating FBUser deletion")
+        }
+    }
+    
+    // saving data into core data: BFUser
+    func setupUserInfo(userInfo: [String: AnyObject]) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
@@ -156,7 +207,22 @@ extension UIViewController {
             print("Error in saving userInfo into core data")
         }
         
+        
+//// request core data we just saved to check if we do save it/////
+        let request = NSFetchRequest(entityName: "FBUser")
+        do {
+            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+            
+            let c = results.count
+            print("FBUser number: \(c)")
+            print("Product Name: \(results[0].name), Price: \(results[0].email)")
+            
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
     }
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 
