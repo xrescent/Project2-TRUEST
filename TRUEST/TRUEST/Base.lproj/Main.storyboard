@@ -404,6 +404,31 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hhJ-Oi-TnN">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DrawerUIViewTableViewCell" selectionStyle="default" indentationWidth="10" id="Cd3-U8-ifj" customClass="DrawerUIViewTableViewCell" customModule="TRUEST" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cd3-U8-ifj" id="pq5-02-vyi">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uLi-Zf-gOL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uLi-Zf-gOL" firstAttribute="top" secondItem="pq5-02-vyi" secondAttribute="top" id="9Sv-NA-fc0"/>
+                                                <constraint firstAttribute="bottom" secondItem="uLi-Zf-gOL" secondAttribute="bottom" id="bDv-xo-g1t"/>
+                                                <constraint firstAttribute="trailing" secondItem="uLi-Zf-gOL" secondAttribute="trailing" id="ct4-gJ-GBv"/>
+                                                <constraint firstItem="uLi-Zf-gOL" firstAttribute="leading" secondItem="pq5-02-vyi" secondAttribute="leading" id="dtr-UY-4tQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ContentView" destination="pq5-02-vyi" id="Voc-V9-2Yd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="lYB-HQ-Lcz">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>

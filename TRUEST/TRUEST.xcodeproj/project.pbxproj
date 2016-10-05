@@ -18,6 +18,7 @@
 		6B334A431DA3BABD00FF47D6 /* FBUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B334A3F1DA3BABD00FF47D6 /* FBUser+CoreDataProperties.swift */; };
 		6B334A441DA3BABD00FF47D6 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B334A401DA3BABD00FF47D6 /* FBUser.swift */; };
 		6B334A461DA4D74F00FF47D6 /* DrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B334A451DA4D74F00FF47D6 /* DrawerViewController.swift */; };
+		6B334A481DA4DF6400FF47D6 /* DrawerUIViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B334A471DA4DF6400FF47D6 /* DrawerUIViewTableViewCell.swift */; };
 		6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */; };
 		6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */; };
 		6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */; };
@@ -41,6 +42,7 @@
 		6B334A3F1DA3BABD00FF47D6 /* FBUser+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FBUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		6B334A401DA3BABD00FF47D6 /* FBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		6B334A451DA4D74F00FF47D6 /* DrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerViewController.swift; sourceTree = "<group>"; };
+		6B334A471DA4DF6400FF47D6 /* DrawerUIViewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawerUIViewTableViewCell.swift; sourceTree = "<group>"; };
 		6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBondViewController.swift; sourceTree = "<group>"; };
 		6BE1D1821D9904AD001B19E0 /* TRUEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TRUEST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
 				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
+				6B334A471DA4DF6400FF47D6 /* DrawerUIViewTableViewCell.swift */,
 				6B334A451DA4D74F00FF47D6 /* DrawerViewController.swift */,
 				6B0468AB1D9E3C0200AD3005 /* UIColors.swift */,
 				6B81D2B31D9FEDE500D42BA8 /* AddBondViewController.swift */,
@@ -272,6 +275,7 @@
 				6B334A411DA3BABD00FF47D6 /* Postcard+CoreDataProperties.swift in Sources */,
 				6B334A431DA3BABD00FF47D6 /* FBUser+CoreDataProperties.swift in Sources */,
 				6BE1D1861D9904AD001B19E0 /* AppDelegate.swift in Sources */,
+				6B334A481DA4DF6400FF47D6 /* DrawerUIViewTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
