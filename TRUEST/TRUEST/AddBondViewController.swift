@@ -46,6 +46,10 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBAction func NextPressed(sender: AnyObject) {
         next()
     }
+    @IBAction func UploadPressed(sender: AnyObject) {
+        uploadPostcard()
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,18 +92,18 @@ extension AddBondViewController{
         storageRef = FIRStorage.storage().referenceForURL("gs://truest-625dd.appspot.com/")
     }
     
-    func post() { // upload to server
-        
-        let sendAPostcard: [String: AnyObject] = ["title": currentTextOfTitle,
-                                                    "context": currentTextOfContext,
-                                                    "signature": currentTextOfSignature,
-                                                    "image": 1] //記得image改成storage檔案的檔名
-        
+    
+    func uploadPostcard() { // upload to server
         let postcardSentRef = databaseRef.child("postcards").childByAutoId() // 在data base 並產生postcard's uid
         
         let postcardSentUid = postcardSentRef.key
         
         let imagePath = postcardSentUid + "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"// 該圖片存在firebase storage上的名稱
+        
+        let sendAPostcard: [String: AnyObject] = ["title": currentTextOfTitle,
+                                                  "context": currentTextOfContext,
+                                                  "signature": currentTextOfSignature,
+                                                  "image": imagePath] //記得image改成storage檔案的檔名
         
         postcardSentRef.setValue(sendAPostcard) //將postcard的資料新增進database
         

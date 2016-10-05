@@ -89,21 +89,23 @@ extension LoginViewController {
                 self.dismissViewControllerAnimated(true, completion: nil)
                 
                 self.getFBUserData()
-//// link to the page (UIViewController) we want
-//    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//    _= AppDelegate.switchToBondViewController()
                 
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                // link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                
+                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
+                
+                self.presentViewController(homeViewController, animated: true, completion: nil)
                 
                 // using fb access token to sign in to firebase
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                
                 let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
                 
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-
-                    let ref = FIRDatabase.database().reference()
-                    
-                    print("\(ref)")
                 }
+                
+                self.uploadFBUserInfo()
             }
         })
         
@@ -141,8 +143,11 @@ extension LoginViewController {
                         return
                 }
                 
+                // get user's firebase UID
+                guard let uid = FIRAuth.auth()?.currentUser?.uid else { fatalError() }
+                
                 // convert those data's format so we can save it into core data
-                let userInfo: [String: AnyObject] =  [ "fbID": id, "name": name, "email": email, "fbProfileLink": link, "pictureUrl": url ]
+                let userInfo: [String: AnyObject] =  [ "id": uid, "fbID": id, "name": name, "email": email, "fbProfileLink": link, "pictureUrl": url ]
                 
                 // save those data into core data: FBUser
                 self.cleanUserInfo()
@@ -187,7 +192,7 @@ extension UIViewController {
         }
     }
     
-    // saving data into core data: BFUser
+    // saving data into core data: FBUser
     func setupUserInfo(userInfo: [String: AnyObject]) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
@@ -206,22 +211,47 @@ extension UIViewController {
         } catch {
             print("Error in saving userInfo into core data")
         }
-        
-        
+////////////////////////////////////////////////////////////////////////////////////////////////////
 //// request core data we just saved to check if we do save it/////
+////////////////////////////////////////////////////////////////////////////////////////////////////
         let request = NSFetchRequest(entityName: "FBUser")
         do {
             let results = try managedContext.executeFetchRequest(request) as! [FBUser]
             
             let c = results.count
             print("FBUser number: \(c)")
-            print("Product Name: \(results[0].name), Price: \(results[0].email)")
+            print("\(results[0])")
             
         }catch{
             fatalError("Failed to fetch data: \(error)")
         }
-    }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+    }
+
+    
+    func uploadFBUserInfo() {
+        let fbUserInfoSentRef = FIRDatabase.database().reference().child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "FBUser")
+        
+        do {
+            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+            
+            let c = results.count
+            print("FBUser number: \(c)")
+            print("\(results[0])")
+            
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+
+        
+        
+    }
 
 }
 

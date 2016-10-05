@@ -219,7 +219,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Library" id="G7D-9B-y9Z"/>
-                                    <barButtonItem title="Settings" id="ZEe-wK-DKA"/>
+                                    <barButtonItem title="Settings" id="ZEe-wK-DKA">
+                                        <connections>
+                                            <action selector="UploadPressed:" destination="XnR-Ui-pT9" id="31T-I2-6Bp"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rdg-Of-nOg">
