@@ -255,9 +255,21 @@ extension UIViewController {
         }
    
     }
+
     
+// 嘗試將開啟新UIViewController做成一個func
+//    class func openViewController(identifierOfDestinationViewController: String!) {
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
+//        
+//        self.presentViewController(destinationViewController, animated: true, completion: nil)
+//    }
+
 
 }
+
+
 
 
 

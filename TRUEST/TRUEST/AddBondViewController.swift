@@ -48,6 +48,14 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBAction func UploadPressed(sender: AnyObject) {
         uploadPostcard()
     }
+    @IBAction func CheckDrawer(sender: AnyObject) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("DrawerViewController")
+        
+        self.presentViewController(homeViewController, animated: true, completion: nil)
+
+    }
     
     
     override func viewDidLoad() {
@@ -246,3 +254,5 @@ extension AddBondViewController{
         ScrollView.setContentOffset(CGPointMake(0, 0), animated: true)
     }
 }
+
+

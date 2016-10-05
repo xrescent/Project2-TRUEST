@@ -7,13 +7,71 @@
 //
 
 import UIKit
+import CoreData
 
-class DrawerViewController: UIViewController {
+class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var DrawerTableView: UITableView!
+    var postcardsInDrawer = [PostcardInDrawer]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // request Postcard from core data
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "Postcard")
+        do {
+            let results = try managedContext.executeFetchRequest(request) as! [Postcard]
+            
+            for result in results {
+                guard let  title = result.title,
+                                context = result.context,
+                                signature = result.signature,
+                                imageUrl = result.imageUrl else { fatalError() }
+                
+                postcardsInDrawer.append(PostcardInDrawer(title: title, context: context, signature: signature, imageUrl: imageUrl))
+            }
+            
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+        
+        
+        DrawerTableView.delegate = self
+        DrawerTableView.dataSource = self
+        
+        self.DrawerTableView.rowHeight = 100
+
+        if self.DrawerTableView != nil {
+            self.DrawerTableView.reloadData()
+        }
+        
      }
 
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return postcardsInDrawer.count
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("DrawerCell", forIndexPath: indexPath) as! DrawerUIViewTableViewCell
+        
+        let row = indexPath.row
+        let thePostcard = postcardsInDrawer[row]
+        
+        cell.title.text = thePostcard.title
+        
+        
+        return cell
+    }
     
 }
