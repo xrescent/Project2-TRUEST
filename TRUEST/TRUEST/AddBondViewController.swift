@@ -232,7 +232,7 @@ extension AddBondViewController{
         case TitleTextField:
             ScrollView.setContentOffset(CGPointMake(0, 100), animated: true)
         case SignatureTextField:
-            ScrollView.setContentOffset(CGPointMake(0, 2), animated: true)
+            ScrollView.setContentOffset(CGPointMake(0, 200), animated: true)
         default: break
         }
     }
