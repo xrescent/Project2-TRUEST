@@ -26,6 +26,7 @@
 		6BE1D18E1D9904AD001B19E0 /* TRUEST.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6BE1D18C1D9904AD001B19E0 /* TRUEST.xcdatamodeld */; };
 		6BE1D1901D9904AD001B19E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */; };
 		6BE1D1931D9904AD001B19E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE1D1911D9904AD001B19E0 /* LaunchScreen.storyboard */; };
+		6BE312C31DA6075B0089BCB6 /* DeliverConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE312C21DA6075B0089BCB6 /* DeliverConditionViewController.swift */; };
 		E93D9D8AF76F8BABD253199D /* Pods_TRUEST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		6BE1D18F1D9904AD001B19E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BE1D1921D9904AD001B19E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6BE1D1941D9904AD001B19E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6BE312C21DA6075B0089BCB6 /* DeliverConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliverConditionViewController.swift; sourceTree = "<group>"; };
 		CF29872BA91A898FE8E06FB7 /* Pods-TRUEST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRUEST.release.xcconfig"; path = "Pods/Target Support Files/Pods-TRUEST/Pods-TRUEST.release.xcconfig"; sourceTree = "<group>"; };
 		FE04F18B4771DEA2D0ACDB55 /* Pods_TRUEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TRUEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -122,6 +124,7 @@
 				6B81D2B21D9FE6DA00D42BA8 /* supporting */,
 				6BE1D1851D9904AD001B19E0 /* AppDelegate.swift */,
 				6BE1D1871D9904AD001B19E0 /* LoginViewController.swift */,
+				6BE312C21DA6075B0089BCB6 /* DeliverConditionViewController.swift */,
 				6BE1D1891D9904AD001B19E0 /* Main.storyboard */,
 				6B334A471DA4DF6400FF47D6 /* DrawerUIViewTableViewCell.swift */,
 				6B334A451DA4D74F00FF47D6 /* DrawerViewController.swift */,
@@ -269,6 +272,7 @@
 				6B1AF30A1DA238A5004B706A /* Manager.swift in Sources */,
 				6B81D2B41D9FEDE500D42BA8 /* AddBondViewController.swift in Sources */,
 				6B0468AC1D9E3C0200AD3005 /* UIColors.swift in Sources */,
+				6BE312C31DA6075B0089BCB6 /* DeliverConditionViewController.swift in Sources */,
 				6B334A461DA4D74F00FF47D6 /* DrawerViewController.swift in Sources */,
 				6BE1D1881D9904AD001B19E0 /* LoginViewController.swift in Sources */,
 				6B334A441DA3BABD00FF47D6 /* FBUser.swift in Sources */,
