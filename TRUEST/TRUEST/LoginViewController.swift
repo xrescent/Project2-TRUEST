@@ -91,11 +91,7 @@ extension LoginViewController {
                 self.getFBUserData()
                 
                 // link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
-                
-                self.presentViewController(homeViewController, animated: true, completion: nil)
+                switchViewController(from: self, to: "AddBondViewController")
                 
                 // using fb access token to sign in to firebase
                 let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
@@ -253,25 +249,25 @@ extension UIViewController {
         }catch{
             fatalError("Failed to fetch data: \(error)")
         }
-   
+
     }
 
     
-// 嘗試將開啟新UIViewController做成一個func
-//    class func openViewController(identifierOfDestinationViewController: String!) {
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        
-//        let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
-//        
-//        self.presentViewController(destinationViewController, animated: true, completion: nil)
-//    }
+
 
 
 }
 
 
 
+// 嘗試將開啟新UIViewController做成一個func
+func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 
+        let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
+
+        originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
+    }
 
 
 

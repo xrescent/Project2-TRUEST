@@ -49,12 +49,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         uploadPostcard()
     }
     @IBAction func CheckDrawer(sender: AnyObject) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("DrawerViewController")
-        
-        self.presentViewController(homeViewController, animated: true, completion: nil)
-
+        switchViewController(from: self, to: "DrawerViewController")
     }
     
     
