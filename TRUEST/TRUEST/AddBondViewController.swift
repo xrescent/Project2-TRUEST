@@ -27,6 +27,11 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         imagePicker.sourceType = .PhotoLibrary
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    @IBOutlet weak var Button1: UIBarButtonItem!
+    @IBOutlet weak var Button3: UIBarButtonItem!
+    @IBOutlet weak var Button5: UIBarButtonItem!
+    
+    
     private var pickedImage = UIImage()
     private var imageData = NSData()
     private var imageUrl = String()
@@ -80,6 +85,10 @@ extension AddBondViewController {
         concelImageView.tintColor = UIColor.whiteColor()
         ConcelPress.setImage(concelImage, forState: .Normal)
         ConcelPress.addTarget(self, action: #selector(AddBondViewController.AbortSelectedImage(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        Button1.title = "Drawer"
+        Button3.title = "Save"
+        Button5.title = "Send"
     }
 }
 

@@ -379,6 +379,9 @@
                     <connections>
                         <outlet property="AddPhotoDescription" destination="mwu-Rm-HpF" id="icJ-c9-lHk"/>
                         <outlet property="AddPhotoPress" destination="Z01-gH-fm7" id="Xyo-CI-A6E"/>
+                        <outlet property="Button1" destination="5cx-S2-F0j" id="c5u-62-izN"/>
+                        <outlet property="Button3" destination="xvI-Us-Rbu" id="Myn-Kp-fSb"/>
+                        <outlet property="Button5" destination="ZEe-wK-DKA" id="9oi-ap-gL4"/>
                         <outlet property="ConcelPress" destination="9tm-YS-x5p" id="ENR-MT-rjp"/>
                         <outlet property="ContentView" destination="FS8-ei-Jxa" id="hH9-V1-sMU"/>
                         <outlet property="ContextTextField" destination="6QO-mC-WPb" id="Qdw-A0-O2S"/>
