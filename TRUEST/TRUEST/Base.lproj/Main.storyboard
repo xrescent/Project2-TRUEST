@@ -894,7 +894,7 @@
                                             <constraint firstAttribute="height" constant="220" id="5AI-t9-7li"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SHn-00-pJo">
@@ -928,7 +928,7 @@
                                                     <constraint firstAttribute="height" constant="50" id="erK-uw-Ucv"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
@@ -941,7 +941,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="ConditionInputFieldClicked:" destination="AEX-j7-u8D" eventType="editingDidEnd" id="OgP-V8-YQe"/>
+                                                    <action selector="ConditionInputFieldClicked:" destination="AEX-j7-u8D" eventType="editingDidBegin" id="EJl-7h-D1t"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -964,7 +964,7 @@
                                             <constraint firstAttribute="height" constant="220" id="GOB-sW-Hd5"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>

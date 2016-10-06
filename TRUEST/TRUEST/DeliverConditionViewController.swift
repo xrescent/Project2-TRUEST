@@ -18,7 +18,31 @@ class DeliverConditionViewController: UIViewController {
     @IBOutlet weak var ConditionContextView: UIView!
     @IBOutlet weak var ConditionBackground: UILabel!
     @IBOutlet weak var ConditionInputField: UITextField!
-    @IBAction func ConditionInputFieldClicked(sender: AnyObject) {
+    @IBAction func ConditionInputFieldClicked(sender: UITextField) {
+        ConditionInputField.text = ""
+        
+        let inputView = UIView(frame: CGRectMake(0, 0, self.view.frame.size.width, 300))
+        
+        let datePickerView = UIDatePicker(frame: CGRectMake(0, 30, 0, 0))//
+        datePickerView.backgroundColor = UIColor.whiteColor()
+        
+        
+        let doneButton = UIButton(frame: CGRectMake((self.view.frame.size.width/2) - (100/2), 0, 100, 30))
+        doneButton.setTitle("Done", forState: UIControlState.Normal)
+        doneButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        
+        inputView.addSubview(datePickerView)
+        inputView.addSubview(doneButton)
+        
+        datePickerView.datePickerMode = UIDatePickerMode.DateAndTime
+        
+        datePickerView.minuteInterval = 30  //設定每15分鐘為一個間隔
+        
+        sender.inputView = inputView
+        
+        datePickerView.addTarget(self, action: #selector(DeliverConditionViewController.datePickerValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        doneButton.addTarget(self, action: #selector(DeliverConditionViewController.finishSelect(_:)), forControlEvents: UIControlEvents.TouchUpInside)
     }
 
     override func viewDidLoad() {
@@ -51,6 +75,27 @@ extension DeliverConditionViewController {
         ConditionInputField.textColor = UIColor.lightGrayColor()
         
     }
+    
+    
+    @objc private func datePickerValueChanged(sender: UIDatePicker) {
+        //將日期轉換成文字
+        let dateFormatter = NSDateFormatter()
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd EEE HH:mm"
+        
+        ConditionInputField.text = dateFormatter.stringFromDate(sender.date)
+        // 可以選擇的最早日期時間
+//        let fromDateTime = dateFormatter("2016-01-02 18:08")
+//        datePickerView.minimumDate = fromDateTime
+    }
+    
+    
+    @objc private func finishSelect(sender: AnyObject) {
+        ConditionInputField.resignFirstResponder()
+    }
+    
 }
 
 
