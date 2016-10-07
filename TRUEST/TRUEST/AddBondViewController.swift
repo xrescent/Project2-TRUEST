@@ -346,7 +346,7 @@ extension AddBondViewController {
         
         print("UID: \(postcardSentUid)")
         
-        let imagePath = postcardSentUid + "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"// 該圖片存在firebase storage上的名稱
+        let imagePath = postcardSentUid //+ "/\(Int(NSDate.timeIntervalSinceReferenceDate() * 1000)).jpg"// 該圖片存在firebase storage上的名稱
     
         let created_time = dateFormatter.stringFromDate(currentPostcard[0].created_time)
         let specific_date = dateFormatter.stringFromDate(currentPostcard[0].specific_date)
@@ -368,17 +368,21 @@ extension AddBondViewController {
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpg"
         
-        print("imageData")
-        
         firebaseStorageRef.shared.child(imagePath).putData(imageData, metadata: metadata) { (metadata, error) in //將照片存入storage中
             
             if let error = error {
                 print("Error upload image: \(error)")
                 return
+            } else {
+                let downloadUrl = metadata!.downloadURL()!.absoluteString  // get downloadURL
+                
+                firebaseDatabaseRef.shared.child("postcards").child(postcardSentUid).updateChildValues(["image": downloadUrl]) // update postcard's image as its downloadURL
+                
+                print("update image downloadURL")   
             }
         }
         
-        
+        print("image stored")
     }
 
 }
