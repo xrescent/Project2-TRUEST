@@ -100,16 +100,6 @@ extension LoginViewController {
                 
                 // link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
                 switchViewController(from: self, to: "AddBondViewController")
-                
-                // using fb access token to sign in to firebase
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                
-                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
-                
-                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                }
-                
-                self.uploadFBUserInfo() //之後要再加一個判斷if該user已經在firebase上存在了，就不再新增而是updata (應另寫一個func)
             }
         })
         
@@ -158,6 +148,16 @@ extension LoginViewController {
 //userDefaults_fbLoginData.setObject(email, forKey: "FB_userEmail")
 //userDefaults_fbLoginData.setObject(link, forKey: "FB_userLink")
 //userDefaults_fbLoginData.setObject(url, forKey: "FB_userPictureURL")
+                
+                // using fb access token to sign in to firebase
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
+                
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                }
+                
+                self.uploadFBUserInfo() //之後要再加一個判斷if該user已經在firebase上存在了，就不再新增而是updata (應另寫一個func)
             })
         }
     }
@@ -241,6 +241,8 @@ extension UIViewController {
         do {
             let results = try managedContext.executeFetchRequest(request) as! [FBUser]
 
+            print(results.count)
+            
             tempUserInfo["fbID"] = results[0].fbID
             tempUserInfo["name"] = results[0].name
             tempUserInfo["email"] = results[0].email

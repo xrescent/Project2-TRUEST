@@ -65,12 +65,15 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     @IBAction func NextPressed(sender: AnyObject) {
         next()
+        print("NEXT pressed")
     }
     @IBAction func SavePressed(sender: AnyObject) {
         savePostcard(newPostcard)
+        print("SAVE pressed")
     }
     @IBAction func UploadPressed(sender: AnyObject) {
         sent(currentPostcard: newPostcard)
+        print("SEND pressed")
     }
 
     @IBAction func ConditionInputFieldClicked(sender: UITextField) {
