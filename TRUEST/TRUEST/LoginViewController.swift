@@ -70,8 +70,16 @@ extension LoginViewController {
 
 extension LoginViewController {
     // when clicking Facebook login button
-    @IBAction func loginWithFacebook(sender: AnyObject) {
-        
+    @IBAction func facebookPressed(sender: AnyObject) {
+        loginWithFacebook()
+    }
+    
+}
+
+
+extension LoginViewController {
+    
+    private func loginWithFacebook() {
         // get Facebook login authentication
         let fbLoginManager = FBSDKLoginManager()
         
@@ -92,26 +100,10 @@ extension LoginViewController {
                 
                 // link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
                 switchViewController(from: self, to: "AddBondViewController")
-                
-                // using fb access token to sign in to firebase
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                
-                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
-                
-                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                }
-                
-                self.uploadFBUserInfo() //之後要再加一個判斷if該user已經在firebase上存在了，就不再新增而是updata (應另寫一個func)
             }
         })
         
-
-        
     }
-}
-
-
-extension LoginViewController {
     
     private func getFBUserData() {
         
@@ -156,6 +148,16 @@ extension LoginViewController {
 //userDefaults_fbLoginData.setObject(email, forKey: "FB_userEmail")
 //userDefaults_fbLoginData.setObject(link, forKey: "FB_userLink")
 //userDefaults_fbLoginData.setObject(url, forKey: "FB_userPictureURL")
+                
+                // using fb access token to sign in to firebase
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
+                
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                }
+                
+                self.uploadFBUserInfo() //之後要再加一個判斷if該user已經在firebase上存在了，就不再新增而是updata (應另寫一個func)
             })
         }
     }
@@ -164,7 +166,7 @@ extension LoginViewController {
 extension UIViewController {
     
     // delete all data in FBUser. because it is allowed only one user at the same time
-    func cleanUserInfo() {
+    private func cleanUserInfo() {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
@@ -189,7 +191,7 @@ extension UIViewController {
     }
     
     // saving data into core data: FBUser
-    func setupUserInfo(userInfo: [String: AnyObject]) {
+    private func setupUserInfo(userInfo: [String: AnyObject]) {
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let managedContext = appDelegate.managedObjectContext
@@ -225,7 +227,7 @@ extension UIViewController {
     }
 
     
-    func uploadFBUserInfo() {
+    private func uploadFBUserInfo() {
         let fbUserInfoSentRef = firebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -239,6 +241,8 @@ extension UIViewController {
         do {
             let results = try managedContext.executeFetchRequest(request) as! [FBUser]
 
+            print(results.count)
+            
             tempUserInfo["fbID"] = results[0].fbID
             tempUserInfo["name"] = results[0].name
             tempUserInfo["email"] = results[0].email
@@ -251,10 +255,6 @@ extension UIViewController {
         }
 
     }
-
-    
-
-
 
 }
 

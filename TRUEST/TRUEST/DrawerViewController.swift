@@ -30,9 +30,11 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 guard let  title = result.title,
                                 context = result.context,
                                 signature = result.signature,
+                                created_time = result.created_time,
+                                specific_date = result.specific_date,
                                 imageUrl = result.imageUrl else { fatalError() }
                 
-                postcardsInDrawer.append(PostcardInDrawer(title: title, context: context, signature: signature, imageUrl: imageUrl))
+                postcardsInDrawer.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, imageUrl: imageUrl, specific_date: specific_date))
             }
             
         }catch{
