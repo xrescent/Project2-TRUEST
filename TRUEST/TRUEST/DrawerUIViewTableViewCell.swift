@@ -11,8 +11,9 @@ import UIKit
 class DrawerUIViewTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ContentView: UIView!
-    private var cellBackground = UILabel(frame: CGRectMake(20, 20, 320, 80))
+    var cellBackground = UILabel(frame: CGRectMake(20, 20, 320, 80))
     var imageInSmall = UIImageView()
+//    var smallImage = UIImage()
     var title = UILabel()
     var receivers = UILabel()
     private var titleImage = UIImage()
@@ -39,8 +40,15 @@ extension DrawerUIViewTableViewCell {
         title.frame = CGRectMake(100, 30, 100, 30)
         title.backgroundColor = UIColor.redColor()
         
+//        imageInSmall.frame = CGRectMake(35, 35, 50, 50)
+//        imageInSmall.image = smallImage
+//        imageInSmall.contentMode = .ScaleAspectFill
+//        imageInSmall.contentMode = .Center
+//        imageInSmall.alignmentRectForFrame(CGRectMake(35, 35, 50, 50))
+
         self.ContentView.addSubview(cellBackground)
         self.ContentView.addSubview(title)
+        self.ContentView.addSubview(imageInSmall)
     }
 }
 

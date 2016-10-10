@@ -32,9 +32,9 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 signature = result.signature,
                                 created_time = result.created_time,
                                 specific_date = result.specific_date,
-                                imageUrl = result.imageUrl else { fatalError() }
+                                image = result.image else { fatalError() }
                 
-                postcardsInDrawer.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, imageUrl: imageUrl, specific_date: specific_date))
+                postcardsInDrawer.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, image: image, specific_date: specific_date))
             }
             
         }catch{
@@ -67,11 +67,22 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DrawerCell", forIndexPath: indexPath) as! DrawerUIViewTableViewCell
         
-        let row = indexPath.row
-        let thePostcard = postcardsInDrawer[row]
+        let thePostcard = postcardsInDrawer[indexPath.row]
         
         cell.title.text = thePostcard.title
-        
+//        if let url = NSURL(string:  thePostcard.imageUrl) {//else { fatalError() }
+//            print(url)
+//            guard let data = NSData(contentsOfURL: url) else { fatalError() }
+//            cell.imageInSmall.image = UIImage(data: data)
+//        } else {
+//            cell.imageInSmall.image = UIImage(named: "urgency")
+//        }
+        cell.imageInSmall.frame = CGRectMake(35, 35, 50, 50)
+        cell.imageInSmall.layer.cornerRadius = cell.imageInSmall.frame.height / 2
+        cell.imageInSmall.contentMode = .ScaleAspectFill
+        cell.imageInSmall.image = UIImage(data: thePostcard.image)
+        cell.imageInSmall.clipsToBounds = true
+        cell.ContentView.addSubview(cell.imageInSmall)
         
         return cell
     }

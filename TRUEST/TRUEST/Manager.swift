@@ -20,7 +20,7 @@ struct PostcardInDrawer {
     var title: String!
     var context: String!
     var signature: String!
-    var imageUrl: String! //先設成都是non-optional，若無實在塞""來判斷是否有值
+    var image: NSData!
 //    let audioUrl: NSData?
 //    let videoUrl: NSData?
 //    let urgency: Int! = 0
