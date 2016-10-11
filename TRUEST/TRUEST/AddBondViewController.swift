@@ -186,7 +186,7 @@ extension AddBondViewController {
     @objc private func finishSelect(sender: AnyObject) {
         delivered_date = dateFormatter.dateFromString(ConditionInputTextField.text!)!
         
-        print(newPostcard)
+//        print(newPostcard)
         
         self.newPostcard[0].specific_date = delivered_date
         
@@ -289,7 +289,7 @@ extension AddBondViewController {
         let created_time = NSDate()
         print("postcard created time: \(created_time)")
         
-        newPostcard.append(PostcardInDrawer(created_time:  created_time, title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, imageUrl: imageUrl, specific_date: created_time))
+        newPostcard.append(PostcardInDrawer(created_time:  created_time, title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, image: imageData, specific_date: created_time))
         
         //        newPostcard = PostcardInDrawer(created_time: created_time, title: currentTextOfTitle, context: currentTextOfContext, signature: currentTextOfSignature, imageUrl: imageUrl, specific_date: created_time)
         let c = self.newPostcard.count
@@ -324,12 +324,14 @@ extension AddBondViewController {
         newPostcard.setValue(postcardToSave[0].title, forKey: "title")
         newPostcard.setValue(postcardToSave[0].context, forKey: "context")
         newPostcard.setValue(postcardToSave[0].signature, forKey: "signature")
-        newPostcard.setValue(postcardToSave[0].imageUrl, forKey: "imageUrl")
+        newPostcard.setValue(postcardToSave[0].image, forKey: "image")
         newPostcard.setValue(postcardToSave[0].specific_date, forKey: "specific_date")
+//        print("image url is:")
+//        print(postcardToSave[0].imageUrl)
         
         let c = self.newPostcard.count
         print(c)
-        print(self.newPostcard)
+//        print(self.newPostcard)
         
         do {
             try managedContext.save()

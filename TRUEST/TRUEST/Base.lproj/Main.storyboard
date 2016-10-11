@@ -104,6 +104,10 @@
                                     <action selector="facebookPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PDY-Fp-mUw"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="IMl-as-ca3">
+                                <rect key="frame" x="282" y="282" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -151,8 +155,10 @@
                             <constraint firstItem="HZ5-vd-Tzf" firstAttribute="trailing" secondItem="uUz-xz-dL3" secondAttribute="trailing" id="vgc-Ys-3HC"/>
                             <constraint firstItem="Etw-Lz-nWo" firstAttribute="baseline" secondItem="n06-st-No5" secondAttribute="baseline" id="wAN-Pm-p6L"/>
                             <constraint firstItem="5Zg-x5-h0p" firstAttribute="leading" secondItem="Etw-Lz-nWo" secondAttribute="trailing" constant="19" id="wQs-EX-GRL"/>
+                            <constraint firstItem="IMl-as-ca3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yGD-G0-7Cv"/>
                             <constraint firstItem="Etw-Lz-nWo" firstAttribute="baseline" secondItem="5Zg-x5-h0p" secondAttribute="firstBaseline" id="zBU-H1-F2p"/>
                             <constraint firstItem="uDx-sF-rw9" firstAttribute="top" secondItem="Etw-Lz-nWo" secondAttribute="top" id="zGv-ua-Bsl"/>
+                            <constraint firstItem="IMl-as-ca3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zOg-nI-yDO"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -181,8 +187,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="g1B-yT-K9S"/>
                     <connections>
+                        <outlet property="button1" destination="Etw-Lz-nWo" id="PEE-bd-arP"/>
+                        <outlet property="button3" destination="n06-st-No5" id="uj1-pu-yyC"/>
+                        <outlet property="button4" destination="uDx-sF-rw9" id="vCt-gK-2sY"/>
                         <outlet property="facebookButton" destination="5Zg-x5-h0p" id="Ztm-wP-XGG"/>
                         <outlet property="facebookLabel" destination="eC1-Js-Hzb" id="hLq-ED-IcV"/>
+                        <outlet property="loadingSpinner" destination="IMl-as-ca3" id="KMC-qz-ajp"/>
                         <outlet property="loginDescription" destination="uUz-xz-dL3" id="rs4-6U-vBi"/>
                         <outlet property="mainTitle" destination="HZ5-vd-Tzf" id="kGD-3b-qXT"/>
                         <outlet property="subTitle" destination="vkS-4u-6C9" id="FVP-9u-0Nv"/>

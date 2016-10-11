@@ -23,7 +23,7 @@ extension Postcard {
     @NSManaged var title: String?
     @NSManaged var context: String?
     @NSManaged var signature: String?
-    @NSManaged var imageUrl: String?
+    @NSManaged var image: NSData?
     @NSManaged var audio: String?
     @NSManaged var video: String?
     @NSManaged var urgency: NSNumber?

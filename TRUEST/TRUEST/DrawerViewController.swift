@@ -32,9 +32,9 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                 signature = result.signature,
                                 created_time = result.created_time,
                                 specific_date = result.specific_date,
-                                imageUrl = result.imageUrl else { fatalError() }
+                                image = result.image else { fatalError() }
                 
-                postcardsInDrawer.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, imageUrl: imageUrl, specific_date: specific_date))
+                postcardsInDrawer.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, image: image, specific_date: specific_date))
             }
             
         }catch{
@@ -45,7 +45,7 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         DrawerTableView.delegate = self
         DrawerTableView.dataSource = self
         
-        self.DrawerTableView.rowHeight = 100
+        self.DrawerTableView.rowHeight = 120
 
         if self.DrawerTableView != nil {
             self.DrawerTableView.reloadData()
@@ -67,11 +67,26 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("DrawerCell", forIndexPath: indexPath) as! DrawerUIViewTableViewCell
         
-        let row = indexPath.row
-        let thePostcard = postcardsInDrawer[row]
+        let thePostcard = postcardsInDrawer[indexPath.row]
+        
+//        cell.cellBackground.frame = CGRectMake(20, 20, self.view.frame.width - 40 , 80)
         
         cell.title.text = thePostcard.title
+        cell.title.font = cell.title.font.fontWithSize(12)
+
+        cell.imageInSmall.frame = CGRectMake(35, 35, 50, 50)
+        cell.imageInSmall.layer.cornerRadius = cell.imageInSmall.frame.height / 2
+        cell.imageInSmall.contentMode = .ScaleAspectFill
+        cell.imageInSmall.image = UIImage(data: thePostcard.image)
+        cell.imageInSmall.clipsToBounds = true
         
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        cell.lastEditedLabel.text = dateFormatter.stringFromDate(thePostcard.created_time)
+        cell.lastEditedLabel.textColor = UIColor.grayColor()
+        cell.lastEditedLabel.font = cell.lastEditedLabel.font.fontWithSize(12)
+
+        cell.ContentView.addSubview(cell.imageInSmall)
         
         return cell
     }

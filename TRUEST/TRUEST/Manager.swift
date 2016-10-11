@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 
 struct PostcardInDrawer {
-    let sender: String! = "user'UID on firebase database"
+    let sender: String! = FIRAuth.auth()?.currentUser?.uid
 //    let receivers: [String]!
     let created_time: NSDate!
 //    let last_edited_time: NSDate!
@@ -20,7 +20,7 @@ struct PostcardInDrawer {
     var title: String!
     var context: String!
     var signature: String!
-    var imageUrl: String! //先設成都是non-optional，若無實在塞""來判斷是否有值
+    var image: NSData!
 //    let audioUrl: NSData?
 //    let videoUrl: NSData?
 //    let urgency: Int! = 0
@@ -62,6 +62,13 @@ class firebaseStorageRef {
     static let shared = FIRStorage.storage().reference()
 }
 
+extension CGRect {
+    init(center: CGPoint, size: CGSize) {
+        let originX = center.x - (size.width / 2)
+        let originY = center.y - (size.height / 2)
+        self.init(origin: CGPoint(x: originX, y: originY), size: size)
+    }
+}
 
 
 

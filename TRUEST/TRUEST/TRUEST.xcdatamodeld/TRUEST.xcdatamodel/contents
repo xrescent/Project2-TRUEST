@@ -14,7 +14,7 @@
         <attribute name="created_time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="deliver_condition" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="delivered_time" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="imageUrl" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="last_edited_time" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="postcard_uid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receivers" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -36,8 +36,8 @@
         <attribute name="user_uid" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="FBUser" positionX="-36" positionY="126" width="128" height="135"/>
         <element name="Postcard" positionX="-63" positionY="-18" width="128" height="300"/>
         <element name="User" positionX="-54" positionY="108" width="128" height="135"/>
-        <element name="FBUser" positionX="-36" positionY="126" width="128" height="135"/>
     </elements>
 </model>

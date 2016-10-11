@@ -18,37 +18,65 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var mainTitle: UILabel!
     @IBOutlet weak var subTitle: UILabel!
     @IBOutlet weak var loginDescription: UILabel!
+    @IBOutlet weak var button1: UIButton!
     @IBOutlet weak var facebookLabel: UILabel!
     @IBOutlet weak var facebookButton: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var button4: UIButton!
+    @IBOutlet weak var loadingSpinner: UIActivityIndicatorView!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.hideLoginButtons(true)
+        
 /////////////// 判斷user是否登入過，給予不同的開場畫面 ///////////
-//        FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
-//            if user != nil {
-//                // user is signed in
-//                // move user to homeViewController
-//                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
-//                
-//                self.presentViewController(homeViewController, animated: true, completion: nil)
-//
-//            } else {
-//                // user is not signed in
-//                // setup UIs for LoginViewController
-//                self.setup()
-//            }
+        FIRAuth.auth()?.addAuthStateDidChangeListener { (auth, user) in
+            if user != nil {
+                // user is signed in
+                // move user to homeViewController
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
+                
+                self.presentViewController(homeViewController, animated: true, completion: nil)
+
+            } else {
+                // user is not signed in
+                // setup UIs for LoginViewController
+                self.hideLoginButtons(false)
+                self.setup()
+            }
+        }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+//        // log out
+//        @IBAction func didTapLogout(sender: AnyObject) {
+//            try! FIRAuth.auth()!.signOut()
+//            FBSDKAccessToken.setCurrentAccessToken(nil)
+//            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let viewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("LoginViewController")
+//            self.presentViewController(viewController, animated: true, completion: nil)
 //        }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
         
-        setup()
+//        setup()
     }
     
 }
 
 extension LoginViewController {
+    
+    private func hideLoginButtons(decision: Bool) {
+        loginDescription.hidden = decision
+        button1.hidden = decision
+        facebookButton.hidden = decision
+        facebookLabel.hidden = decision
+        button3.hidden = decision
+        button4.hidden = decision
+    }
+    
+    
+    
     private func setup() {
         
         // login label for Facebook
@@ -80,6 +108,10 @@ extension LoginViewController {
 extension LoginViewController {
     
     private func loginWithFacebook() {
+        self.hideLoginButtons(true)
+        
+        self.loadingSpinner.startAnimating()
+        
         // get Facebook login authentication
         let fbLoginManager = FBSDKLoginManager()
         
@@ -87,18 +119,36 @@ extension LoginViewController {
             
             if let error = error {
                 print("FB login error: \(error)")
+                self.hideLoginButtons(false)
+                self.loadingSpinner.stopAnimating()
                 return
             }
             
             if result.isCancelled {
                 print("Cancle button pressed")
+                self.hideLoginButtons(false)
+                self.loadingSpinner.stopAnimating()
             } else {
                 // permission get
-                self.dismissViewControllerAnimated(true, completion: nil)
+                print("FB logged in")
                 
-                self.getFBUserData()
+                // using fb access token to sign in to firebase
+                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
+                print("FB access token get")
+                
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
+                
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                    print("sign in firebase with FB")
+                    self.getFBUserData()
+                }
+                
+//                self.getFBUserData()
+                
                 
                 // link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
+                self.dismissViewControllerAnimated(true, completion: nil)
+                
                 switchViewController(from: self, to: "AddBondViewController")
             }
         })
@@ -130,6 +180,9 @@ extension LoginViewController {
                         print("Error: \(error)")
                         return
                 }
+                print("FB user info get")
+                
+                self.cleanUserInfo()
                 
                 // get user's firebase UID
                 guard let uid = FIRAuth.auth()?.currentUser?.uid else { fatalError() }
@@ -138,7 +191,6 @@ extension LoginViewController {
                 let userInfo: [String: AnyObject] =  [ "id": uid, "fbID": id, "name": name, "email": email, "fbProfileLink": link, "pictureUrl": url ]
                 
                 // save those data into core data: FBUser
-                self.cleanUserInfo()
                 self.setupUserInfo(userInfo)
 
 //// method: save into userDefaults
@@ -149,15 +201,8 @@ extension LoginViewController {
 //userDefaults_fbLoginData.setObject(link, forKey: "FB_userLink")
 //userDefaults_fbLoginData.setObject(url, forKey: "FB_userPictureURL")
                 
-                // using fb access token to sign in to firebase
-                let accessToken = FBSDKAccessToken.currentAccessToken().tokenString
-                
-                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(accessToken)
-                
-                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                }
-                
                 self.uploadFBUserInfo() //之後要再加一個判斷if該user已經在firebase上存在了，就不再新增而是updata (應另寫一個func)
+                
             })
         }
     }
@@ -185,6 +230,7 @@ extension UIViewController {
         
         do {
             try managedContext.save()
+            print("deleting user info in core data")
         } catch {
             print("Error in updating FBUser deletion")
         }
@@ -206,6 +252,7 @@ extension UIViewController {
         
         do {
             try managedContext.save()
+            print("saving user info in core data")
         } catch {
             print("Error in saving userInfo into core data")
         }
@@ -249,6 +296,7 @@ extension UIViewController {
             tempUserInfo["pictureUrl"] = results[0].pictureUrl
             
             fbUserInfoSentRef.setValue(tempUserInfo)
+            print("upload FB user info to firebase")
             
         }catch{
             fatalError("Failed to fetch data: \(error)")
