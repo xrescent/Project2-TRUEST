@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DrawerUIViewTableViewCell: UITableViewCell {
+class DrawerTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ContentView: UIView!
     var cellBackground = UILabel(frame: CGRectMake(20, 20, 320, 80))
@@ -31,7 +31,7 @@ class DrawerUIViewTableViewCell: UITableViewCell {
     
 }
 
-extension DrawerUIViewTableViewCell {
+extension DrawerTableViewCell {
     private func setup() {
         
         cellBackground.backgroundColor = UIColor.lightGrayColor()
