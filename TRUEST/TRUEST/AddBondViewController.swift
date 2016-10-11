@@ -38,6 +38,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     
     @IBOutlet weak var Button1: UIBarButtonItem!
+    @IBOutlet weak var Button2: UIBarButtonItem!
     @IBOutlet weak var Button3: UIBarButtonItem!
     @IBOutlet weak var Button4: UIBarButtonItem!
     @IBOutlet weak var Button5: UIBarButtonItem!
@@ -62,6 +63,11 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var Toolbar: UIToolbar!
     @IBAction func CheckDrawer(sender: AnyObject) {
         switchViewController(from: self, to: "DrawerViewController")
+        print("check Drawer")
+    }
+    @IBAction func CheckMailbox(sender: AnyObject) {
+        switchViewController(from: self, to: "MailboxViewController")
+        print("check Mailbox")
     }
     @IBAction func NextPressed(sender: AnyObject) {
         next()
@@ -161,6 +167,7 @@ extension AddBondViewController {
 
         // ToolBarButton
         Button1.title = "Drawer"
+        Button2.title = "Mailbox"
         Button3.title = "Next"
         Button4.title = "Save"
         Button5.title = "Send"

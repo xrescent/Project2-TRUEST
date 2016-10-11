@@ -226,7 +226,11 @@
                                             <action selector="CheckDrawer:" destination="XnR-Ui-pT9" id="NZl-ik-kZU"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Ksana" id="jyY-rZ-wdm"/>
+                                    <barButtonItem title="Ksana" id="jyY-rZ-wdm">
+                                        <connections>
+                                            <action selector="CheckMailbox:" destination="XnR-Ui-pT9" id="VEs-Yi-U2w"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="MainButton" id="xvI-Us-Rbu">
                                         <connections>
                                             <action selector="NextPressed:" destination="XnR-Ui-pT9" id="ish-m6-CzG"/>
@@ -539,6 +543,7 @@
                         <outlet property="AddPhotoDescription" destination="mwu-Rm-HpF" id="icJ-c9-lHk"/>
                         <outlet property="AddPhotoPress" destination="Z01-gH-fm7" id="Xyo-CI-A6E"/>
                         <outlet property="Button1" destination="5cx-S2-F0j" id="c5u-62-izN"/>
+                        <outlet property="Button2" destination="jyY-rZ-wdm" id="y1e-nb-7Nr"/>
                         <outlet property="Button3" destination="xvI-Us-Rbu" id="Myn-Kp-fSb"/>
                         <outlet property="Button4" destination="G7D-9B-y9Z" id="6LF-ch-wKm"/>
                         <outlet property="Button5" destination="ZEe-wK-DKA" id="9oi-ap-gL4"/>
@@ -1053,6 +1058,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rze-98-siY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1507" y="1723"/>
+        </scene>
+        <!--Mailbox View Controller-->
+        <scene sceneID="tfR-wA-H1V">
+            <objects>
+                <viewController storyboardIdentifier="MailboxViewController" id="Cic-u3-3m6" customClass="MailboxViewController" customModule="TRUEST" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PV1-sw-H0A"/>
+                        <viewControllerLayoutGuide type="bottom" id="Jk0-Qu-KZC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="yQ1-2p-w09">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="37a-DM-nDY" userLabel="Mailbox Table View">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MailboxCell" id="5x4-1w-ZrO" customClass="MailboxTableViewCell" customModule="TRUEST" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5x4-1w-ZrO" id="hgL-NA-mBi">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" restorationIdentifier="MailboxCell" translatesAutoresizingMaskIntoConstraints="NO" id="ZAs-pw-aB1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZAs-pw-aB1" firstAttribute="leading" secondItem="hgL-NA-mBi" secondAttribute="leading" id="A9n-Fb-OIo"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZAs-pw-aB1" secondAttribute="trailing" id="KMl-D9-jzf"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZAs-pw-aB1" secondAttribute="bottom" id="KWd-yn-vw3"/>
+                                                <constraint firstItem="ZAs-pw-aB1" firstAttribute="top" secondItem="hgL-NA-mBi" secondAttribute="top" id="sg7-2U-210"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ContentView" destination="hgL-NA-mBi" id="YkX-Aq-deV"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="zlv-w6-q6Y">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="600" id="APw-aY-7WK"/>
+                                    <constraint firstAttribute="height" constant="44" id="JTH-Hm-8v6"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Intimates" id="hDA-FN-AnM"/>
+                                    <barButtonItem title="Ksana" id="6Rv-Dc-7Kc"/>
+                                    <barButtonItem title="MainButton" id="bIO-lA-l1h">
+                                        <connections>
+                                            <action selector="NextPressed:" destination="XnR-Ui-pT9" id="xfw-LR-K0o"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Library" id="rrO-lq-oMg"/>
+                                    <barButtonItem title="Settings" id="Hdb-DP-3kk">
+                                        <connections>
+                                            <action selector="UploadPressed:" destination="XnR-Ui-pT9" id="Xc2-Xw-7jB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jk0-Qu-KZC" firstAttribute="top" secondItem="zlv-w6-q6Y" secondAttribute="bottom" id="9Im-Ej-uMk"/>
+                            <constraint firstAttribute="trailing" secondItem="37a-DM-nDY" secondAttribute="trailing" id="Fhj-k5-h9w"/>
+                            <constraint firstItem="zlv-w6-q6Y" firstAttribute="leading" secondItem="yQ1-2p-w09" secondAttribute="leading" id="GiY-JY-WT2"/>
+                            <constraint firstItem="37a-DM-nDY" firstAttribute="leading" secondItem="yQ1-2p-w09" secondAttribute="leading" id="Leo-UB-jVQ"/>
+                            <constraint firstItem="37a-DM-nDY" firstAttribute="top" secondItem="yQ1-2p-w09" secondAttribute="top" id="TZr-Ak-mSy"/>
+                            <constraint firstItem="Jk0-Qu-KZC" firstAttribute="top" secondItem="37a-DM-nDY" secondAttribute="bottom" constant="44" id="wCo-Dp-gWV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="MailboxTableView" destination="37a-DM-nDY" id="gcu-1X-cVq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mTT-g1-PMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2862" y="1039"/>
         </scene>
     </scenes>
 </document>
