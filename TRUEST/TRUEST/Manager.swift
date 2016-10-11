@@ -62,6 +62,13 @@ class firebaseStorageRef {
     static let shared = FIRStorage.storage().reference()
 }
 
+extension CGRect {
+    init(center: CGPoint, size: CGSize) {
+        let originX = center.x - (size.width / 2)
+        let originY = center.y - (size.height / 2)
+        self.init(origin: CGPoint(x: originX, y: originY), size: size)
+    }
+}
 
 
 
