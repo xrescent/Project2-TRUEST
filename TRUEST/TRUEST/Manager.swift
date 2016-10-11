@@ -11,7 +11,7 @@ import Firebase
 import FirebaseDatabase
 
 struct PostcardInDrawer {
-    let sender: String! = "user'UID on firebase database"
+    let sender: String! = FIRAuth.auth()?.currentUser?.uid
 //    let receivers: [String]!
     let created_time: NSDate!
 //    let last_edited_time: NSDate!
