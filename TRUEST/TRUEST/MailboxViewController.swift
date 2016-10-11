@@ -8,15 +8,36 @@
 
 import UIKit
 import CoreData
+import Firebase
+
 
 class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBOutlet weak var MailboxTableView: UITableView!
-    var postcardsInDrawer = [PostcardInDrawer]()
+    var postcardsReceived = [String]()
+    var postcardsInMailbox = [PostcardInDrawer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        print(uid)
+        firebaseDatabaseRef.shared.child("bonds").queryEqualToValue(uid, childKey: "receiver").observeEventType(.ChildAdded, withBlock: { snapshot in
+            print("snapshot: ")
+            print(snapshot)
+//            guard let postcardID = snapshot.value!["postcard"] as? String else { fatalError() }
+//            self.postcardsReceived.append(postcardID)
+        })
+        
+        //    func request() {          下載
+        //        _refHandle = firebaseDatabaseRef.shared.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
+        //            guard let strongSelf = self else { return }
+        ////            strongSelf.myPostcards.append(snapshot)
+        //            })
+        //    }
+
+        
         
         // request Postcard from core data
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -35,7 +56,7 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
                     specific_date = result.specific_date,
                     image = result.image else { fatalError() }
                 
-                postcardsInDrawer.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, image: image, specific_date: specific_date))
+                postcardsInMailbox.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, image: image, specific_date: specific_date))
             }
             
         }catch{
@@ -61,14 +82,14 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postcardsInDrawer.count
+        return postcardsInMailbox.count
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MailboxCell", forIndexPath: indexPath) as! MailboxTableViewCell
         
-        let thePostcard = postcardsInDrawer[indexPath.row]
+        let thePostcard = postcardsInMailbox[indexPath.row]
         
         //        cell.cellBackground.frame = CGRectMake(20, 20, self.view.frame.width - 40 , 80)
         

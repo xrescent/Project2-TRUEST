@@ -307,12 +307,6 @@ extension AddBondViewController {
     
     
     
-    //    func request() {          下載
-    //        _refHandle = firebaseDatabaseRef.shared.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
-    //            guard let strongSelf = self else { return }
-    ////            strongSelf.myPostcards.append(snapshot)
-    //            })
-    //    }
     
 
     
