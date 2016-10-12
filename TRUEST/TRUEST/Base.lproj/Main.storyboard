@@ -61,9 +61,6 @@
                                     <constraint firstAttribute="width" constant="50" id="i1Y-Wd-DZg"/>
                                 </constraints>
                                 <state key="normal" title="way4"/>
-                                <connections>
-                                    <segue destination="Hfn-9c-Sss" kind="show" id="va4-5K-l4R"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ＢＯＮＤ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZ5-vd-Tzf">
                                 <rect key="frame" x="0.0" y="64" width="600" height="100"/>
@@ -650,56 +647,6 @@
             </objects>
             <point key="canvasLocation" x="2189" y="1039"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="mnU-ZH-cr3">
-            <objects>
-                <viewController id="Hfn-9c-Sss" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="9es-3J-wPu"/>
-                        <viewControllerLayoutGuide type="bottom" id="IAL-Ms-DT6"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="aP1-Am-haV">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ＢＯＮＤ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWf-hk-oe5">
-                                <rect key="frame" x="0.0" y="64" width="600" height="116"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="account" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WfE-dN-p8l">
-                                <rect key="frame" x="190" y="277" width="220" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="passward" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NOS-xO-QQE">
-                                <rect key="frame" x="190" y="327" width="220" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="to8-ln-woh">
-                                <rect key="frame" x="190" y="402" width="220" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="log in"/>
-                                <connections>
-                                    <segue destination="Xvs-3q-dMG" kind="show" id="oEn-oj-VJY"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ey9-wJ-qwg">
-                                <rect key="frame" x="275" y="482" width="50" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="back"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sKZ-Rv-cP7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1776" y="350"/>
-        </scene>
         <!--BOND-->
         <scene sceneID="a3r-fb-gJZ">
             <objects>
@@ -726,16 +673,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="BOND" id="EQe-3a-YcR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc">
-                            <connections>
-                                <segue destination="mmK-e6-sfu" kind="show" id="z24-pi-Vsw"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="oP1-ab-Pqc"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5FH-Mm-gKj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2420" y="350"/>
+            <point key="canvasLocation" x="1789" y="350"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cBC-XE-tvU">
@@ -754,181 +697,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7l2-4k-wkF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="414" y="350"/>
-        </scene>
-        <!--BOND-->
-        <scene sceneID="gge-zM-1ae">
-            <objects>
-                <viewController id="mmK-e6-sfu" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="AIT-FC-pew"/>
-                        <viewControllerLayoutGuide type="bottom" id="ThJ-Yz-a1D"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YLc-jT-QIC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sxx-JW-QjZ">
-                                <rect key="frame" x="0.0" y="561" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Intimates" id="FAO-NM-vpL"/>
-                                    <barButtonItem title="Ksana" id="jVr-Yq-GEy"/>
-                                    <barButtonItem title="MainButton" id="JyO-h0-mLp"/>
-                                    <barButtonItem title="Library" id="2CS-BL-hF6"/>
-                                    <barButtonItem title="Settings" id="QRO-S2-ICT"/>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="choose the sources to find your intimates" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHA-UU-1I9">
-                                <rect key="frame" x="0.0" y="126" width="600" height="59"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="laM-vV-WQi">
-                                <rect key="frame" x="272" y="242" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="source3"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySA-Nz-i6o">
-                                <rect key="frame" x="341" y="242" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="source4"/>
-                                <connections>
-                                    <segue destination="L0L-1V-7b4" kind="show" id="vef-g1-Pyd"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KR8-1a-hWp">
-                                <rect key="frame" x="407" y="242" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="source5"/>
-                                <connections>
-                                    <segue destination="6CD-wb-9Sg" kind="show" id="6E3-G3-iEB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyW-mb-9fO">
-                                <rect key="frame" x="205" y="242" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="source2"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4s-CG-skv">
-                                <rect key="frame" x="141" y="242" width="54" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="source1"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Notice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fa7-Gz-ROA">
-                                <rect key="frame" x="0.0" y="339" width="600" height="100"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="BOND" id="dLA-Nr-2R7">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Qsc-rb-kmm"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ai5-Kg-Vnd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3068" y="350"/>
-        </scene>
-        <!--BOND-->
-        <scene sceneID="X6j-6e-Yvg">
-            <objects>
-                <viewController id="6CD-wb-9Sg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="okO-gF-sn4"/>
-                        <viewControllerLayoutGuide type="bottom" id="Jqi-7P-gLZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="P2g-g1-EE2">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSj-TX-Ip0">
-                                <rect key="frame" x="0.0" y="561" width="600" height="44"/>
-                                <items>
-                                    <barButtonItem title="Intimates" id="lvb-WG-Xew"/>
-                                    <barButtonItem title="Ksana" id="aHQ-DV-Rgj"/>
-                                    <barButtonItem title="MainButton" id="4CA-Eq-cAX"/>
-                                    <barButtonItem title="Library" id="mOs-mb-uFw"/>
-                                    <barButtonItem title="Settings" id="uyf-qq-gTN"/>
-                                </items>
-                            </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BOND: it's a collection cell with section 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mje-yY-kdy">
-                                <rect key="frame" x="0.0" y="64" width="600" height="60"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pX7-7Z-Gb3">
-                                <rect key="frame" x="151" y="139" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="friend3"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XEL-pO-uwy">
-                                <rect key="frame" x="220" y="139" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="friend4"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fxr-0y-TSh">
-                                <rect key="frame" x="286" y="139" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="friend5"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcQ-og-rmS">
-                                <rect key="frame" x="84" y="139" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="friend2"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6qr-SK-Itp">
-                                <rect key="frame" x="20" y="139" width="54" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="friend1"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BAND: it's a collection cell with section 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0y-Q6-iD6">
-                                <rect key="frame" x="0.0" y="339" width="600" height="59"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7G-O7-Juz">
-                                <rect key="frame" x="149" y="414" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="band3"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDn-eD-ce9">
-                                <rect key="frame" x="218" y="414" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="band4"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZS-wn-MLO">
-                                <rect key="frame" x="284" y="414" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="band5"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e7s-2N-aNF">
-                                <rect key="frame" x="82" y="414" width="56" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="band2"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5d0-Cf-kes">
-                                <rect key="frame" x="18" y="414" width="54" height="50"/>
-                                <color key="backgroundColor" red="0.92941176469999998" green="0.37647058820000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="band1"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="BOND" id="4iL-1m-xih">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ivq-ph-PIn"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FHx-nk-Nye" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3706" y="350"/>
         </scene>
         <!--BOND-->
         <scene sceneID="rvr-wQ-H0D">

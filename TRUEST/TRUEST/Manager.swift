@@ -45,8 +45,8 @@ struct PostcardInDrawer {
 //}
 class PostcardInMailbox {
     var sender: String!
-    //    let receivers: [String]!
-//    var created_time: NSDate!
+    var receiver: String!
+    //    var created_time: NSDate!
     //    let last_edited_time: NSDate!
     //    let sent_time: NSDate?
     var received_date: NSDate!  // 與寄出時不一樣
@@ -60,8 +60,9 @@ class PostcardInMailbox {
     //    let deliver_condition: String!
     //    var specific_date: NSDate!
     //    let relative_days: Int?
-    init (sender: String, received_date: NSDate, title: String, context: String, signature: String, image: NSData) {
+    init (sender: String, receiver: String, received_date: NSDate, title: String, context: String, signature: String, image: NSData) {
         self.sender = sender
+        self.receiver = receiver
         self.received_date = received_date
         self.title = title
         self.context = context

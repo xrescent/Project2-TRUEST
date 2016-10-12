@@ -152,7 +152,9 @@ extension MailboxViewController {
                     guard let url = NSURL(string: imageUrl) else { fatalError() }
                     guard let image = NSData(contentsOfURL: url) else { fatalError() }
                     
-                    self.postcardsInMailbox.append(PostcardInMailbox(sender: sender, received_date: received_date, title: title, context: context, signature: signature, image: image))
+                    // 目前mailbox的postcard都是線上載下來的，未來要新增user last login date，並把received的postcard都存在core data
+                    
+                    self.postcardsInMailbox.append(PostcardInMailbox(sender: sender, receiver: userID, received_date: received_date, title: title, context: context, signature: signature, image: image))
                     
                     dispatch_async(dispatch_get_main_queue(), {
                         self.MailboxTableView.reloadData()
