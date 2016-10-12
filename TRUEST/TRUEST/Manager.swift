@@ -70,5 +70,23 @@ extension CGRect {
     }
 }
 
+// 嘗試將開啟新UIViewController做成一個func
+func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
+    let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    
+    let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
+    
+    originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
+}
 
 
+func downloadPostcards() {
+    firebaseStorageRef.shared.child("-KTm_8FrWO9NfS-6lN5b").dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+        if error != nil {
+            print("error in downloading postcard")
+        } else {
+            print("data")
+            print(data)
+        }
+    }
+}

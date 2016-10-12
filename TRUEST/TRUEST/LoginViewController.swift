@@ -294,6 +294,7 @@ extension UIViewController {
             tempUserInfo["name"] = results[0].name
             tempUserInfo["email"] = results[0].email
             tempUserInfo["pictureUrl"] = results[0].pictureUrl
+            tempUserInfo["firebase_id"] = results[0].id
             
             fbUserInfoSentRef.setValue(tempUserInfo)
             print("upload FB user info to firebase")
@@ -308,14 +309,6 @@ extension UIViewController {
 
 
 
-// 嘗試將開啟新UIViewController做成一個func
-func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
-
-        originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
-    }
 
 
 

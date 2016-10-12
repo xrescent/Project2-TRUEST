@@ -62,24 +62,24 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
 
     @IBOutlet weak var Toolbar: UIToolbar!
     @IBAction func CheckDrawer(sender: AnyObject) {
-        switchViewController(from: self, to: "DrawerViewController")
         print("check Drawer")
+        switchViewController(from: self, to: "DrawerViewController")
     }
     @IBAction func CheckMailbox(sender: AnyObject) {
-        switchViewController(from: self, to: "MailboxViewController")
         print("check Mailbox")
+        switchViewController(from: self, to: "MailboxViewController")
     }
     @IBAction func NextPressed(sender: AnyObject) {
-        next()
         print("NEXT pressed")
+        next()
     }
     @IBAction func SavePressed(sender: AnyObject) {
-        savePostcard(newPostcard)
         print("SAVE pressed")
+        savePostcard(newPostcard)
     }
     @IBAction func UploadPressed(sender: AnyObject) {
-        sent(currentPostcard: newPostcard)
         print("SEND pressed")
+        sent(currentPostcard: newPostcard)
     }
 
     @IBAction func ConditionInputFieldClicked(sender: UITextField) {

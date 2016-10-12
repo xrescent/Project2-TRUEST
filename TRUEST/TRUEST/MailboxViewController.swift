@@ -22,13 +22,24 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewDidLoad()
         
         let uid = FIRAuth.auth()!.currentUser!.uid
+        print("uid is not gonna be used")
         print(uid)
-        firebaseDatabaseRef.shared.child("bonds").queryEqualToValue(uid, childKey: "receiver").observeEventType(.ChildAdded, withBlock: { snapshot in
+        firebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue("-KTmZQPryCOPyhlDFsAI").observeEventType(.ChildAdded, withBlock: { snapshot in
             print("snapshot: ")
             print(snapshot)
+            
+            guard let  bond = snapshot.value as? NSDictionary,
+                            receiver = bond["receiver"] else { fatalError() }
+            
+            print("receiver")
+            print(receiver)
+
 //            guard let postcardID = snapshot.value!["postcard"] as? String else { fatalError() }
 //            self.postcardsReceived.append(postcardID)
+        
         })
+        print("download postcard")
+        downloadPostcards()
         
         //    func request() {          下載
         //        _refHandle = firebaseDatabaseRef.shared.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
