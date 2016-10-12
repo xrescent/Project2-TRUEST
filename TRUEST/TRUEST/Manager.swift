@@ -43,15 +43,32 @@ struct PostcardInDrawer {
 //        return postcardDictionary
 //    }
 //}
-
-
-//class Manager {
-//    
-//    func post() {
-//        let databaseRef = FIRDatabase.database().reference()
-//        databaseRef.child("Postcards")
-//    }
-//}
+class PostcardInMailbox {
+    var sender: String!
+    //    let receivers: [String]!
+//    var created_time: NSDate!
+    //    let last_edited_time: NSDate!
+    //    let sent_time: NSDate?
+    var received_date: NSDate!  // 與寄出時不一樣
+    var title: String!
+    var context: String!
+    var signature: String!
+    var image: NSData!
+    //    let audioUrl: NSData?
+    //    let videoUrl: NSData?
+    //    let urgency: Int! = 0
+    //    let deliver_condition: String!
+    //    var specific_date: NSDate!
+    //    let relative_days: Int?
+    init (sender: String, received_date: NSDate, title: String, context: String, signature: String, image: NSData) {
+        self.sender = sender
+        self.received_date = received_date
+        self.title = title
+        self.context = context
+        self.signature = signature
+        self.image = image
+    }
+}
 
 
 class firebaseDatabaseRef {
@@ -79,14 +96,14 @@ func switchViewController(from originalViewController: UIViewController, to iden
     originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
 }
 
-
-func downloadPostcards() {
-    firebaseStorageRef.shared.child("-KTm_8FrWO9NfS-6lN5b").dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
-        if error != nil {
-            print("error in downloading postcard")
-        } else {
-            print("data")
-            print(data)
-        }
-    }
-}
+//以後要把downloadPostcards寫在背景執行
+//func downloadPostcards() {
+//    firebaseStorageRef.shared.child("-KTm_8FrWO9NfS-6lN5b").dataWithMaxSize(1 * 1024 * 1024) { (data, error) -> Void in
+//        if error != nil {
+//            print("error in downloading postcard")
+//        } else {
+//            print("data")
+//            print(data)
+//        }
+//    }
+//}

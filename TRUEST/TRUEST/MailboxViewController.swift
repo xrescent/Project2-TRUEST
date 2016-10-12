@@ -16,63 +16,38 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var MailboxTableView: UITableView!
     var postcardsReceived = [String]()
-    var postcardsInMailbox = [PostcardInDrawer]()
+    var postcardsInMailbox = [PostcardInMailbox]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let uid = FIRAuth.auth()!.currentUser!.uid
-        print("uid is not gonna be used")
-        print(uid)
-        firebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue("-KTmZQPryCOPyhlDFsAI").observeEventType(.ChildAdded, withBlock: { snapshot in
-            print("snapshot: ")
-            print(snapshot)
-            
-            guard let  bond = snapshot.value as? NSDictionary,
-                            receiver = bond["receiver"] else { fatalError() }
-            
-            print("receiver")
-            print(receiver)
-
-//            guard let postcardID = snapshot.value!["postcard"] as? String else { fatalError() }
-//            self.postcardsReceived.append(postcardID)
+        self.findUserID()
         
-        })
-        print("download postcard")
-        downloadPostcards()
-        
-        //    func request() {          下載
-        //        _refHandle = firebaseDatabaseRef.shared.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
-        //            guard let strongSelf = self else { return }
-        ////            strongSelf.myPostcards.append(snapshot)
-        //            })
-        //    }
-
         
         
         // request Postcard from core data
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        
+//        let managedContext = appDelegate.managedObjectContext
+//        
+//        let request = NSFetchRequest(entityName: "Postcard")
+//        do {
+//            let results = try managedContext.executeFetchRequest(request) as! [Postcard]
+//            
+//            for result in results {
+//                guard let  title = result.title,
+//                    context = result.context,
+//                    signature = result.signature,
+//                    created_time = result.created_time,
+//                    specific_date = result.specific_date,
+//                    image = result.image else { fatalError() }
         
-        let managedContext = appDelegate.managedObjectContext
-        
-        let request = NSFetchRequest(entityName: "Postcard")
-        do {
-            let results = try managedContext.executeFetchRequest(request) as! [Postcard]
-            
-            for result in results {
-                guard let  title = result.title,
-                    context = result.context,
-                    signature = result.signature,
-                    created_time = result.created_time,
-                    specific_date = result.specific_date,
-                    image = result.image else { fatalError() }
-                
-                postcardsInMailbox.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, image: image, specific_date: specific_date))
-            }
-            
-        }catch{
-            fatalError("Failed to fetch data: \(error)")
-        }
+//                postcardsInMailbox.append(PostcardInDrawer(created_time: created_time, title: title, context: context, signature: signature, image: image, specific_date: specific_date))
+//            }
+//            
+//        }catch{
+//            fatalError("Failed to fetch data: \(error)")
+//        }
         
         
         MailboxTableView.delegate = self
@@ -102,8 +77,6 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let thePostcard = postcardsInMailbox[indexPath.row]
         
-        //        cell.cellBackground.frame = CGRectMake(20, 20, self.view.frame.width - 40 , 80)
-        
         cell.title.text = thePostcard.title
         cell.title.font = cell.title.font.fontWithSize(12)
         
@@ -115,7 +88,7 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
-        cell.lastEditedLabel.text = dateFormatter.stringFromDate(thePostcard.created_time)
+        cell.lastEditedLabel.text = dateFormatter.stringFromDate(thePostcard.received_date)
         cell.lastEditedLabel.textColor = UIColor.grayColor()
         cell.lastEditedLabel.font = cell.lastEditedLabel.font.fontWithSize(12)
         
@@ -126,4 +99,97 @@ class MailboxViewController: UIViewController, UITableViewDelegate, UITableViewD
     
 }
 
+
+extension MailboxViewController {
+    
+    func findUserID() {
+        // use user uid to find userID in firebase database
+        let uid = FIRAuth.auth()!.currentUser!.uid
+        var userID = String()
+//        var bonds: [String] = []
+        
+        firebaseDatabaseRef.shared.child("users").queryOrderedByChild("firebase_id").queryEqualToValue(uid).observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+            userID = snapshot.ref.key
+            print("userID:")
+            print(userID)
+            firebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userID).observeEventType(.ChildAdded, withBlock: { snapshot in
+                
+                guard let  bond = snapshot.value as? NSDictionary,
+                                postcard_id = bond["postcard"] as? String
+                    else {
+                        print("No one has sent a postcard to this user or error in getting bond")
+                        return
+                }
+//                bonds.append(postcard)
+//                print("bonds in searching")
+//                print(bonds)
+                print("postcard ID")
+                print(postcard_id)
+                
+                firebaseDatabaseRef.shared.child("postcards").queryOrderedByKey().queryEqualToValue(postcard_id).observeEventType(.ChildAdded, withBlock: { snapshot in
+                    
+//                    enum downloadError: ErrorType{  //以後有空要來做error handling
+//                        case StringConvertError, NSDateConvertError
+//                    }
+                    
+                    guard let  postcard = snapshot.value as? NSDictionary,
+                                    context = postcard["context"] as? String,
+//                                    created_time = postcard["created_time"] as? NSDate,  // not used
+                                    delivered_date = postcard["delivered_date"] as? String,
+                                    imageUrl = postcard["image"] as? String,
+                                    sender = postcard["sender"] as? String,
+                                    signature = postcard["signature"] as? String,
+                                    title = postcard["title"] as? String
+                    else {
+                        print("error in getting postcard")
+                        return
+                    }
+                    
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+                    guard let received_date = dateFormatter.dateFromString(delivered_date) else { fatalError() }
+                    guard let url = NSURL(string: imageUrl) else { fatalError() }
+                    guard let image = NSData(contentsOfURL: url) else { fatalError() }
+                    
+                    self.postcardsInMailbox.append(PostcardInMailbox(sender: sender, received_date: received_date, title: title, context: context, signature: signature, image: image))
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.MailboxTableView.reloadData()
+                        print("reloadData")
+                    })
+                    
+                })
+                
+                
+            })
+//            print("bonds 空空空")
+//            print(bonds)
+        })
+        
+        print("userID: 空空空")
+        print(userID)
+    }
+    
+    
+    func findBondsWithUserID(userID: String) -> [String] {
+        // use userID as receiver to find relatived bonds
+        var bonds: [String] = []
+        
+        firebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userID).observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+            guard let  bond = snapshot.value as? NSDictionary,
+                            postcard = bond["postcard"] as? String
+                else {
+                    print("No one has sent a postcard to this user")
+                    return bonds = []
+            }
+            
+            bonds.append(postcard)
+        })
+        print("bonds in func")
+        print(bonds)
+        return bonds
+    }
+}
 
