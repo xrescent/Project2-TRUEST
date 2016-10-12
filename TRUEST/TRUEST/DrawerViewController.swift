@@ -69,7 +69,7 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let thePostcard = postcardsInDrawer[indexPath.row]
         
-//        cell.cellBackground.frame = CGRectMake(20, 20, self.view.frame.width - 40 , 80)
+//        cell.cellBackground.frame = CGRectMake(20, 20, self.view.frame.width - 40 , 80)  //之後改成依device的大小自動變化
         
         cell.title.text = thePostcard.title
         cell.title.font = cell.title.font.fontWithSize(12)

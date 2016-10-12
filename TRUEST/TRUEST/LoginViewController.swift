@@ -29,6 +29,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.loadingSpinner.hidden = true
+        
         self.hideLoginButtons(true)
         
 /////////////// 判斷user是否登入過，給予不同的開場畫面 ///////////
@@ -92,6 +94,8 @@ extension LoginViewController {
         facebookButton.setTitle("", forState: .Normal) // use setTitle to set button's title, don't use titleLabel
         facebookButton.layer.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).CGColor
         
+        self.loadingSpinner.hidden = false
+        self.loadingSpinner.stopAnimating()
     }
 }
 
@@ -294,6 +298,7 @@ extension UIViewController {
             tempUserInfo["name"] = results[0].name
             tempUserInfo["email"] = results[0].email
             tempUserInfo["pictureUrl"] = results[0].pictureUrl
+            tempUserInfo["firebase_id"] = results[0].id
             
             fbUserInfoSentRef.setValue(tempUserInfo)
             print("upload FB user info to firebase")
@@ -308,14 +313,6 @@ extension UIViewController {
 
 
 
-// 嘗試將開啟新UIViewController做成一個func
-func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-
-        let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
-
-        originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
-    }
 
 
 

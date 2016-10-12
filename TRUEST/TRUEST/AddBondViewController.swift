@@ -38,6 +38,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     
     @IBOutlet weak var Button1: UIBarButtonItem!
+    @IBOutlet weak var Button2: UIBarButtonItem!
     @IBOutlet weak var Button3: UIBarButtonItem!
     @IBOutlet weak var Button4: UIBarButtonItem!
     @IBOutlet weak var Button5: UIBarButtonItem!
@@ -61,19 +62,24 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
 
     @IBOutlet weak var Toolbar: UIToolbar!
     @IBAction func CheckDrawer(sender: AnyObject) {
+        print("check Drawer")
         switchViewController(from: self, to: "DrawerViewController")
     }
+    @IBAction func CheckMailbox(sender: AnyObject) {
+        print("check Mailbox")
+        switchViewController(from: self, to: "MailboxViewController")
+    }
     @IBAction func NextPressed(sender: AnyObject) {
-        next()
         print("NEXT pressed")
+        next()
     }
     @IBAction func SavePressed(sender: AnyObject) {
-        savePostcard(newPostcard)
         print("SAVE pressed")
+        savePostcard(newPostcard)
     }
     @IBAction func UploadPressed(sender: AnyObject) {
-        sent(currentPostcard: newPostcard)
         print("SEND pressed")
+        sent(currentPostcard: newPostcard)
     }
 
     @IBAction func ConditionInputFieldClicked(sender: UITextField) {
@@ -161,6 +167,7 @@ extension AddBondViewController {
 
         // ToolBarButton
         Button1.title = "Drawer"
+        Button2.title = "Mailbox"
         Button3.title = "Next"
         Button4.title = "Save"
         Button5.title = "Send"
@@ -300,12 +307,6 @@ extension AddBondViewController {
     
     
     
-    //    func request() {          下載
-    //        _refHandle = firebaseDatabaseRef.shared.child("postcards").observeEventType(.ChildAdded, withBlock: { [weak self] (snapshot) -> Void in
-    //            guard let strongSelf = self else { return }
-    ////            strongSelf.myPostcards.append(snapshot)
-    //            })
-    //    }
     
 
     
