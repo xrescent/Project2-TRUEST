@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactsTableViewCell: UITableViewCell {
+class ContactsCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

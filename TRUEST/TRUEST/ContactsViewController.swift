@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import CoreData
 
-class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    @IBOutlet weak var CollectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,19 +20,21 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // return postcardInMailbox.count
         return 1
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ContactsCell", forIndexPath: indexPath) as! ContactsCollectionViewCell
+        // setup UI here
         return cell
+    }
+    
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        // handle if a friend is selected
     }
 }

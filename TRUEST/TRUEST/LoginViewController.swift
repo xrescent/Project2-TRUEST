@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
                 // user is signed in
                 // move user to homeViewController
                 let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("AddBondViewController")
+                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ContactsViewController")
                 
                 self.presentViewController(homeViewController, animated: true, completion: nil)
 
