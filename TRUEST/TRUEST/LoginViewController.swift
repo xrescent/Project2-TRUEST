@@ -38,10 +38,7 @@ class LoginViewController: UIViewController {
             if user != nil {
                 // user is signed in
                 // move user to homeViewController
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("ContactsViewController")
-                
-                self.presentViewController(homeViewController, animated: true, completion: nil)
+                switchViewController(from: self, to: "ContactsViewController")
 
             } else {
                 // user is not signed in
