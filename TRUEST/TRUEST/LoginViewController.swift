@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
             if user != nil {
                 // user is signed in
                 // move user to homeViewController
-                switchViewController(from: self, to: "AddBondViewController")
+                switchViewController(from: self, to: "AddBondViewController") // ContactsViewController
 
             } else {
                 // user is not signed in
@@ -143,8 +143,6 @@ extension LoginViewController {
                     print("sign in firebase with FB")
                     self.getFBUserData()
                 }
-                
-//                self.getFBUserData()
                 
                 
                 // link to the page (UIViewController) we want  有一個待改進之處：切換畫面時會短暫回到LoginViewController在導到我們指定的畫面
@@ -276,7 +274,7 @@ extension UIViewController {
 
     
     private func uploadFBUserInfo() {
-        let fbUserInfoSentRef = firebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
+        let fbUserInfoSentRef = FirebaseDatabaseRef.shared.child("users").childByAutoId()  //在database產生一個user uid。註：不用auth()的uid是因為未來可能會讓user用多種方式登入，此時一個user就會有多個auth的uid
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         

@@ -5,10 +5,13 @@
 //  Created by MichaelRevlis on 2016/10/3.
 //  Copyright © 2016年 MichaelRevlis. All rights reserved.
 //
-
+import UIKit
 import Foundation
 import Firebase
 import FirebaseDatabase
+import FBSDKCoreKit
+import CoreData
+
 
 struct PostcardInDrawer {
     let sender: String! = FIRAuth.auth()?.currentUser?.uid
@@ -91,13 +94,55 @@ class Friends {
 }
 
 
-class firebaseDatabaseRef {
+class FirebaseDatabaseRef {
     static let shared = FIRDatabase.database().reference()
 }
 
-class firebaseStorageRef {
+class FirebaseStorageRef {
     static let shared = FIRStorage.storage().reference()
 }
+
+
+protocol CurrentUserDelegate: class {
+    func manager(manager: CurrentUserManager, userFBid: String)
+}
+
+
+
+class CurrentUserManager {
+    static let shared = CurrentUserManager()
+
+    typealias GetUserID = (uid: String, fbID: String) -> Void
+    
+    func getUserID(completion completion: GetUserID) {
+        
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        let managedContext = appDelegate.managedObjectContext
+        
+        let request = NSFetchRequest(entityName: "FBUser")
+        do {
+            let results = try managedContext.executeFetchRequest(request) as! [FBUser]
+            
+            for result in results {
+                guard let  fbID = result.fbID else { fatalError() }
+                
+                dispatch_async(dispatch_get_main_queue(), {
+
+                    let userUID = (FIRAuth.auth()?.currentUser?.uid)!
+                    
+                    completion(uid: userUID, fbID: fbID)
+                    
+                })
+            }
+        }catch{
+            fatalError("Failed to fetch data: \(error)")
+        }
+    }
+}
+
+
+
 
 extension CGRect {
     init(center: CGPoint, size: CGSize) {
@@ -106,6 +151,8 @@ extension CGRect {
         self.init(origin: CGPoint(x: originX, y: originY), size: size)
     }
 }
+
+
 
 // 嘗試將開啟新UIViewController做成一個func
 func switchViewController(from originalViewController: UIViewController, to identifierOfDestinationViewController: String!) {

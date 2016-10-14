@@ -108,12 +108,12 @@ extension MailboxViewController {
         var userID = String()
 //        var bonds: [String] = []
         
-        firebaseDatabaseRef.shared.child("users").queryOrderedByChild("firebase_id").queryEqualToValue(uid).observeEventType(.ChildAdded, withBlock: { snapshot in
+        FirebaseDatabaseRef.shared.child("users").queryOrderedByChild("firebase_id").queryEqualToValue(uid).observeEventType(.ChildAdded, withBlock: { snapshot in
             
             userID = snapshot.ref.key
             print("userID:")
             print(userID)
-            firebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userID).observeEventType(.ChildAdded, withBlock: { snapshot in
+            FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userID).observeEventType(.ChildAdded, withBlock: { snapshot in
                 
                 guard let  bond = snapshot.value as? NSDictionary,
                                 postcard_id = bond["postcard"] as? String
@@ -125,7 +125,7 @@ extension MailboxViewController {
                 print("postcard ID")
                 print(postcard_id)
                 
-                firebaseDatabaseRef.shared.child("postcards").queryOrderedByKey().queryEqualToValue(postcard_id).observeEventType(.ChildAdded, withBlock: { snapshot in
+                FirebaseDatabaseRef.shared.child("postcards").queryOrderedByKey().queryEqualToValue(postcard_id).observeEventType(.ChildAdded, withBlock: { snapshot in
                     
 //                    enum downloadError: ErrorType{  //以後有空要來做error handling
 //                        case StringConvertError, NSDateConvertError
@@ -176,7 +176,7 @@ extension MailboxViewController {
         // use userID as receiver to find relatived bonds
         var bonds: [String] = []
         
-        firebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userID).observeEventType(.ChildAdded, withBlock: { snapshot in
+        FirebaseDatabaseRef.shared.child("bonds").queryOrderedByChild("receiver").queryEqualToValue(userID).observeEventType(.ChildAdded, withBlock: { snapshot in
             
             guard let  bond = snapshot.value as? NSDictionary,
                             postcard = bond["postcard"] as? String
