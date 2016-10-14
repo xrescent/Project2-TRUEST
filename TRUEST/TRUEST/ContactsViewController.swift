@@ -18,6 +18,13 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        
+        
+        
     
         let stringUrl = "https://firebasestorage.googleapis.com/v0/b/truest-625dd.appspot.com/o/-KTm_8FrWO9NfS-6lN5b?alt=media&token=38b56f58-2ae7-49ba-9dd2-72ba535b0dfc"
         let imageUrl = NSURL(string: stringUrl)!

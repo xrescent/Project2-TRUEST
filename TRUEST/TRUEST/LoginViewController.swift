@@ -91,7 +91,7 @@ extension LoginViewController {
         facebookButton.setTitle("", forState: .Normal) // use setTitle to set button's title, don't use titleLabel
         facebookButton.layer.backgroundColor = UIColor(colorLiteralRed: 1, green: 1, blue: 1, alpha: 0).CGColor
         
-        self.loadingSpinner.hidden = false
+        self.loadingSpinner.hidden = true
         self.loadingSpinner.stopAnimating()
     }
 }

@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import CoreData
+import FBSDKCoreKit
+//import FBSDKLoginKit
 
 class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -42,6 +44,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var Button3: UIBarButtonItem!
     @IBOutlet weak var Button4: UIBarButtonItem!
     @IBOutlet weak var Button5: UIBarButtonItem!
+    
     
     
     private var pickedImage = UIImage()
@@ -81,6 +84,12 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         print("SEND pressed")
         sent(currentPostcard: newPostcard)
     }
+    @IBAction func LogoutButton(sender: AnyObject) {
+        try! FIRAuth.auth()!.signOut()
+        FBSDKAccessToken.setCurrentAccessToken(nil)
+        switchViewController(from: self, to: "LoginViewController")
+    }
+   
 
     @IBAction func ConditionInputFieldClicked(sender: UITextField) {
         ConditionInputTextField.text = ""
