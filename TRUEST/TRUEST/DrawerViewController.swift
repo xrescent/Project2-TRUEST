@@ -52,6 +52,24 @@ class DrawerViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
      }
+    
+    
+    @IBAction func ViewMailbox(sender: AnyObject) {
+        switchViewController(from: self, to: "MailboxViewController")
+    }
+    @IBAction func Add(sender: AnyObject) {
+        switchViewController(from: self, to: "AddBondViewController")
+    }
+    @IBAction func ViewContacts(sender: AnyObject) {
+        switchViewController(from: self, to: "ContactsViewController")
+    }
+    
+    
+    
+    
+    
+    
+    
 
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

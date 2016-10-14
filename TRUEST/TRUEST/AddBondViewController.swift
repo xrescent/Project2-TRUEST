@@ -89,6 +89,9 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         FBSDKAccessToken.setCurrentAccessToken(nil)
         switchViewController(from: self, to: "LoginViewController")
     }
+    @IBAction func ViewContacts(sender: AnyObject) {
+        switchViewController(from: self, to: "ContactsViewController")
+    }
    
 
     @IBAction func ConditionInputFieldClicked(sender: UITextField) {

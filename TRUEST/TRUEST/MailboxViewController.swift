@@ -172,6 +172,24 @@ extension MailboxViewController {
     }
     
     
+    
+    @IBAction func ViewDrawer(sender: AnyObject) {
+        switchViewController(from: self, to: "DrawerViewController")
+    }
+    @IBAction func Add(sender: AnyObject) {
+        switchViewController(from: self, to: "AddBondViewController")
+    }
+    @IBAction func ViewContacts(sender: AnyObject) {
+        switchViewController(from: self, to: "ContactsViewController")
+    }
+
+    
+    
+    
+    
+    
+    
+    
     func findBondsWithUserID(userID: String) -> [String] {
         // use userID as receiver to find relatived bonds
         var bonds: [String] = []

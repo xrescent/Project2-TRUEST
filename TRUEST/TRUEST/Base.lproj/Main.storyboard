@@ -248,6 +248,11 @@
                                             <action selector="LogoutButton:" destination="XnR-Ui-pT9" id="MPI-tm-F1q"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem title="Contacts" id="G2J-A6-4qW">
+                                        <connections>
+                                            <action selector="ViewContacts:" destination="XnR-Ui-pT9" id="uLO-Md-VEe"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -619,13 +624,21 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem title="Intimates" id="DpJ-RY-wQG"/>
-                                    <barButtonItem title="Ksana" id="Mqk-7o-waQ"/>
-                                    <barButtonItem title="MainButton" id="6Gm-ye-NkO">
+                                    <barButtonItem title="Mailbox" id="Mqk-7o-waQ">
                                         <connections>
-                                            <action selector="NextPressed:" destination="XnR-Ui-pT9" id="FMf-ib-TMl"/>
+                                            <action selector="ViewMailbox:" destination="88y-Ng-J2q" id="c0C-dc-h1F"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Library" id="OQP-Cp-Rgb"/>
+                                    <barButtonItem title="Add" id="6Gm-ye-NkO">
+                                        <connections>
+                                            <action selector="Add:" destination="88y-Ng-J2q" id="C9U-bb-Arm"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Contacts" id="OQP-Cp-Rgb">
+                                        <connections>
+                                            <action selector="ViewContacts:" destination="88y-Ng-J2q" id="MeC-RV-X8U"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Settings" id="udr-je-n9q">
                                         <connections>
                                             <action selector="UploadPressed:" destination="XnR-Ui-pT9" id="19l-Z0-ReE"/>
@@ -726,9 +739,21 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="jPD-Hf-X2A">
                                 <rect key="frame" x="0.0" y="561" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Intimates" id="YKW-id-G1s"/>
-                                    <barButtonItem title="Ksana" id="teE-hI-MN1"/>
-                                    <barButtonItem title="MainButton" id="E9d-fr-Jfv"/>
+                                    <barButtonItem title="Drawer" id="YKW-id-G1s">
+                                        <connections>
+                                            <action selector="ViewDrawer:" destination="Xvs-3q-dMG" id="qrz-9E-AzW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Mailbox" id="teE-hI-MN1">
+                                        <connections>
+                                            <action selector="ViewMailbox:" destination="Xvs-3q-dMG" id="GdD-Sz-CDh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Add" id="E9d-fr-Jfv">
+                                        <connections>
+                                            <action selector="AddBond:" destination="Xvs-3q-dMG" id="Jck-oQ-v0O"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Library" id="Bk2-Nb-7vk"/>
                                     <barButtonItem title="Settings" id="Y5z-Ke-ADJ"/>
                                 </items>
@@ -879,14 +904,22 @@
                                     <constraint firstAttribute="height" constant="44" id="JTH-Hm-8v6"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Intimates" id="hDA-FN-AnM"/>
-                                    <barButtonItem title="Ksana" id="6Rv-Dc-7Kc"/>
-                                    <barButtonItem title="MainButton" id="bIO-lA-l1h">
+                                    <barButtonItem title="Drawer" id="hDA-FN-AnM">
                                         <connections>
-                                            <action selector="NextPressed:" destination="XnR-Ui-pT9" id="xfw-LR-K0o"/>
+                                            <action selector="ViewDrawer:" destination="Cic-u3-3m6" id="mR7-iT-KTy"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="Library" id="rrO-lq-oMg"/>
+                                    <barButtonItem title="Ksana" id="6Rv-Dc-7Kc"/>
+                                    <barButtonItem title="Add" id="bIO-lA-l1h">
+                                        <connections>
+                                            <action selector="Add:" destination="Cic-u3-3m6" id="MTb-6P-AFr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Contacts" id="rrO-lq-oMg">
+                                        <connections>
+                                            <action selector="ViewContacts:" destination="Cic-u3-3m6" id="TyS-hT-I6C"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem title="Settings" id="Hdb-DP-3kk">
                                         <connections>
                                             <action selector="UploadPressed:" destination="XnR-Ui-pT9" id="Xc2-Xw-7jB"/>

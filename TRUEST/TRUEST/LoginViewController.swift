@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
             if user != nil {
                 // user is signed in
                 // move user to homeViewController
-                switchViewController(from: self, to: "AddBondViewController") // ContactsViewController
+                switchViewController(from: self, to: "AddBondViewController") // ContactsViewController  // 
 
             } else {
                 // user is not signed in

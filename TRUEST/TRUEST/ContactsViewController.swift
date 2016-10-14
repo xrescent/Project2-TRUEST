@@ -47,11 +47,12 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
                 
                 print("inside the request")
                 if error == nil {
-                    if let userNameArray = result.valueForKey("data") as? NSArray {
-                        print(userNameArray)
-                        for item in userNameArray {
-                            print(item.valueForKey("name"))
-                        }
+                    print(result)
+                    if let data = result["data"] as? AnyObject {
+                        print(data)
+//                        for item in userNameArray {
+//                            print(item.valueForKey("name"))
+//                        }
                     } else {
                         print("Error in getting friend lis")
                     }
@@ -75,6 +76,22 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         CollectionView.delegate = self
         CollectionView.dataSource = self
     }
+    
+    @IBAction func ViewDrawer(sender: AnyObject) {
+        switchViewController(from: self, to: "DrawerViewController")
+    }
+    @IBAction func ViewMailbox(sender: AnyObject) {
+        switchViewController(from: self, to: "MailboxViewController")
+    }
+    @IBAction func AddBond(sender: AnyObject) {
+        switchViewController(from: self, to: "AddBondViewController")
+    }
+
+    
+    
+    
+    
+    
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
