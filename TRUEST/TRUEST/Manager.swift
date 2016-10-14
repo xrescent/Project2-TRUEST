@@ -113,6 +113,9 @@ func switchViewController(from originalViewController: UIViewController, to iden
     
     let destinationViewController: UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier(identifierOfDestinationViewController)
     
+    destinationViewController.modalPresentationStyle = .CurrentContext
+    destinationViewController.modalTransitionStyle = .CoverVertical
+    
     originalViewController.presentViewController(destinationViewController, animated: true, completion: nil)
 }
 
