@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import CoreData
+import FBSDKCoreKit
+//import FBSDKLoginKit
 
 class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -42,6 +44,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var Button3: UIBarButtonItem!
     @IBOutlet weak var Button4: UIBarButtonItem!
     @IBOutlet weak var Button5: UIBarButtonItem!
+    
     
     
     private var pickedImage = UIImage()
@@ -81,6 +84,15 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         print("SEND pressed")
         sent(currentPostcard: newPostcard)
     }
+    @IBAction func LogoutButton(sender: AnyObject) {
+        try! FIRAuth.auth()!.signOut()
+        FBSDKAccessToken.setCurrentAccessToken(nil)
+        switchViewController(from: self, to: "LoginViewController")
+    }
+    @IBAction func ViewContacts(sender: AnyObject) {
+        switchViewController(from: self, to: "ContactsViewController")
+    }
+   
 
     @IBAction func ConditionInputFieldClicked(sender: UITextField) {
         ConditionInputTextField.text = ""
@@ -346,7 +358,7 @@ extension AddBondViewController {
     
     
     func sent(currentPostcard currentPostcard: [PostcardInDrawer]) { // sent postcard to server
-        let postcardSentRef = firebaseDatabaseRef.shared.child("postcards").childByAutoId() // 在data base 並產生postcard's uid
+        let postcardSentRef = FirebaseDatabaseRef.shared.child("postcards").childByAutoId() // 在data base 並產生postcard's uid
         
         let postcardSentUid = postcardSentRef.key
         
@@ -367,14 +379,14 @@ extension AddBondViewController {
         
         postcardSentRef.setValue(sendAPostcard) //將postcard的資料新增進database
         
-        firebaseStorageRef.shared.child(imagePath) //指定storage要存的相關資訊
+        FirebaseStorageRef.shared.child(imagePath) //指定storage要存的相關資訊
         //在儲存到firebase storage前記得要去更改rule讓read,write = if true
         
         // 定義上傳資料的metadata，以便日後去判斷此筆資料是image/audio/video，並呼叫對應的方始來開啟該檔案
         let metadata = FIRStorageMetadata()
         metadata.contentType = "image/jpg"
         
-        firebaseStorageRef.shared.child(imagePath).putData(imageData, metadata: metadata) { (metadata, error) in //將照片存入storage中
+        FirebaseStorageRef.shared.child(imagePath).putData(imageData, metadata: metadata) { (metadata, error) in //將照片存入storage中
             
             if let error = error {
                 print("Error upload image: \(error)")
@@ -382,7 +394,7 @@ extension AddBondViewController {
             } else {
                 let downloadUrl = metadata!.downloadURL()!.absoluteString  // get downloadURL
                 
-                firebaseDatabaseRef.shared.child("postcards").child(postcardSentUid).updateChildValues(["image": downloadUrl]) // update postcard's image as its downloadURL
+                FirebaseDatabaseRef.shared.child("postcards").child(postcardSentUid).updateChildValues(["image": downloadUrl]) // update postcard's image as its downloadURL
                 
                 print("update image downloadURL")   
             }

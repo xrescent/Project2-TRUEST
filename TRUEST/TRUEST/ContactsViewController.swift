@@ -9,15 +9,26 @@
 import UIKit
 import Firebase
 import CoreData
+import FBSDKCoreKit
 
 class ContactsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var CollectionView: UICollectionView!
 
     var myFriends: [Friends] = []
+    var userFBid = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("hi I'm at ContactsViewController")
+        
+//        let request = FBSDKGraphRequest(graphPath: "//friends", parameters: <#T##[NSObject : AnyObject]!#>, tokenString: <#T##String!#>, version: <#T##String!#>, HTTPMethod: <#T##String!#>)
+        
+        
+        
+        
+        
     
         let stringUrl = "https://firebasestorage.googleapis.com/v0/b/truest-625dd.appspot.com/o/-KTm_8FrWO9NfS-6lN5b?alt=media&token=38b56f58-2ae7-49ba-9dd2-72ba535b0dfc"
         let imageUrl = NSURL(string: stringUrl)!
@@ -25,24 +36,62 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         myFriends = [Friends(name: "Jialing Tan", user_uid: "H8Tn2PP7KoZ7ipUK5sf63nne1Fu2", fbID: "100000557426640", email: "jialing.tan@msa.hinet.net", image: data), Friends(name: "Michael", user_uid: "user_uid", fbID: "fbID", email: "email", image: data), Friends(name: "Andrew", user_uid: "user_uid", fbID: "fbID", email: "email", image: data)]
         
-        firebaseDatabaseRef.shared.child("users").queryOrderedByChild("fbID").observeEventType(.ChildAdded, withBlock: { snapshot in
+        
+        CurrentUserManager.shared.getUserID{ (uid, fbID) in
+
+            print("starting request for friendslist")
             
-            guard let  user = snapshot.value as? NSDictionary,
-                            fbID = user["fbID"] as? String
-                else {
-                    print("error in finding user's fbID")
-                    return
+            let param = ["fields": "friendlists"]
+            let request = FBSDKGraphRequest(graphPath: "/\(fbID)/friends", parameters: param)
+            request.startWithCompletionHandler{ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) in
+                
+                print("inside the request")
+                if error == nil {
+                    print(result)
+                    if let data = result["data"] as? AnyObject {
+                        print(data)
+//                        for item in userNameArray {
+//                            print(item.valueForKey("name"))
+//                        }
+                    } else {
+                        print("Error in getting friend lis")
+                    }
+                }
             }
-            
-            print(fbID)
-            
-            
-            
-        })
+        }
+//            FirebaseDatabaseRef.shared.child("users").queryOrderedByChild(fbID).observeEventType(.ChildAdded, withBlock: { snapshot in
+//
+//                guard let  user = snapshot.value as? NSDictionary,
+//                    fbID = user["fbID"] as? String
+//                    else {
+//                        print("error in finding user's fbID")
+//                        return
+//                }
+//                print("get fbID using singleton")
+//                print(fbID)
+//            })
+        
+        
 
         CollectionView.delegate = self
         CollectionView.dataSource = self
     }
+    
+    @IBAction func ViewDrawer(sender: AnyObject) {
+        switchViewController(from: self, to: "DrawerViewController")
+    }
+    @IBAction func ViewMailbox(sender: AnyObject) {
+        switchViewController(from: self, to: "MailboxViewController")
+    }
+    @IBAction func AddBond(sender: AnyObject) {
+        switchViewController(from: self, to: "AddBondViewController")
+    }
+
+    
+    
+    
+    
+    
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
