@@ -100,7 +100,7 @@ class AddBondViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         
         datePickerView.datePickerMode = UIDatePickerMode.DateAndTime
         
-        datePickerView.minuteInterval = 30  //設定每15分鐘為一個間隔
+        datePickerView.minuteInterval = 30  //設定每30分鐘為一個間隔
         
         sender.inputView = inputView
         

@@ -72,6 +72,25 @@ class PostcardInMailbox {
 }
 
 
+class Friends {
+
+    var name: String!
+    var user_uid: String!
+    var fbID: String!
+    var email: String!
+    var image: NSData!
+    
+    init (name: String, user_uid: String, fbID: String, email: String, image: NSData) {
+        self.name = name
+        self.user_uid = user_uid
+        self.fbID = fbID
+        self.email = email
+        self.image = image
+    }
+
+}
+
+
 class firebaseDatabaseRef {
     static let shared = FIRDatabase.database().reference()
 }

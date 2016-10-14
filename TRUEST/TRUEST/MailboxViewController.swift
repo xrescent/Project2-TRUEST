@@ -121,9 +121,7 @@ extension MailboxViewController {
                         print("No one has sent a postcard to this user or error in getting bond")
                         return
                 }
-//                bonds.append(postcard)
-//                print("bonds in searching")
-//                print(bonds)
+
                 print("postcard ID")
                 print(postcard_id)
                 
