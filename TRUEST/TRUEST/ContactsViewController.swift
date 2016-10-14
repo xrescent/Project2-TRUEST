@@ -19,11 +19,26 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        let stringUrl = "https://www.facebook.com/photo.php?fbid=1290337507661484&set=a.155537521141494.36840.100000557426640&type=3&theater"
+        let stringUrl = "https://firebasestorage.googleapis.com/v0/b/truest-625dd.appspot.com/o/-KTm_8FrWO9NfS-6lN5b?alt=media&token=38b56f58-2ae7-49ba-9dd2-72ba535b0dfc"
         let imageUrl = NSURL(string: stringUrl)!
         let data = NSData(contentsOfURL: imageUrl)!
         
         myFriends = [Friends(name: "Jialing Tan", user_uid: "H8Tn2PP7KoZ7ipUK5sf63nne1Fu2", fbID: "100000557426640", email: "jialing.tan@msa.hinet.net", image: data), Friends(name: "Michael", user_uid: "user_uid", fbID: "fbID", email: "email", image: data), Friends(name: "Andrew", user_uid: "user_uid", fbID: "fbID", email: "email", image: data)]
+        
+        firebaseDatabaseRef.shared.child("users").queryOrderedByChild("fbID").observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+            guard let  user = snapshot.value as? NSDictionary,
+                            fbID = user["fbID"] as? String
+                else {
+                    print("error in finding user's fbID")
+                    return
+            }
+            
+            print(fbID)
+            
+            
+            
+        })
 
         CollectionView.delegate = self
         CollectionView.dataSource = self
@@ -46,7 +61,6 @@ class ContactsViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         cell.setup()
         cell.imageInSmall.image = UIImage(data: theFriend.image)
-        cell.imageInSmall.contentMode = .ScaleAspectFill
         cell.contactName.text = theFriend.name
         
         return cell
